@@ -10,6 +10,195 @@
     </style>
     <meta name='robots' content='noindex, nofollow' />
     <style>
+        /* ========================================================= */
+        /* KELAS BARU UNTUK TEKS UCAPAN PENUTUP */
+        /* ========================================================= */
+        .ucapan-kontras {
+            /* 1. Warna Teks: Hitam Pekat (#333) atau Putih Bersih (#FFF) */
+            /* Kita pilih warna Hitam Pekat yang netral, ini akan kontras di sebagian besar background terang */
+            color: #ffffff !important;
+            outline: #000000 !important;
+
+            /* 2. Ukuran Font: Sedikit lebih besar agar mudah dibaca */
+            font-size: 16px !important;
+            line-height: 1.6;
+
+            /* 3. Gaya Font: Tebal (Bold) untuk menonjolkan */
+            font-weight: 500;
+            /* Medium thickness */
+
+            /* 4. Efek Bayangan Teks (Optional): Jika backgroundnya kompleks/berpola */
+            /* Bayangan putih halus membantu teks hitam menonjol pada background yang gelap atau berisik */
+            /* Jika Anda menggunakan background yang sangat gelap, ganti warna teks di poin 1 menjadi putih (#FFFFFF) dan bayangan menjadi hitam (#000) */
+            text-shadow: 2px 2px 4px rgb(0, 0, 0) !important;
+            /* Bayangan putih yang halus */
+        }
+
+        .cui-border {
+            /* Mengatur gaya, lebar, dan warna border */
+            border: 2px solid #007bff !important;
+
+            /* Properti opsional, bisa Anda hapus jika tidak diperlukan */
+            border-radius: 5px;
+            /* Sedikit membulatkan sudut */
+        }
+
+        /* Container Utama */
+        .elegant-slideshow-container {
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+
+            /* ⭐️ PENTING: Atur TINGGI TETAP di sini! */
+            height: 500px;
+            /* <--- Ubah nilai ini (misalnya 400px, 600px) sesuai preferensi Anda */
+
+            margin: 0 auto;
+        }
+
+        /* Gambar di dalam Slide */
+        .elegant-slideshow-container img {
+            width: 100%;
+            /* ⭐️ PENTING: Gambar harus mengisi tinggi kontainer */
+            height: 100%;
+
+            /* Memastikan gambar mengisi area 100% tanpa distorsi */
+            object-fit: cover;
+
+            display: block;
+        }
+
+        /* Menyembunyikan slide secara default */
+        .auto-slide {
+            display: none;
+            /* Pastikan slide juga mengisi tinggi kontainer */
+            height: 100%;
+        }
+
+        /* Animasi Fade */
+        .fade-animation {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .elementor-element-202dbbc7 {
+            /* Mengatur warna latar belakang menjadi biru muda transparan */
+            background-color: rgba(146, 185, 244, 0.7) !important;
+
+            /* MEMASTIKAN LEBAR PENUH LAYAR */
+            width: 100% !important;
+
+            /* Memastikan padding/border tidak menambah lebar total */
+            box-sizing: border-box !important;
+        }
+
+        .wp-image-1893 {
+            max-width: 100%;
+            /* Memastikan gambar tidak melebihi lebar kontainernya */
+            height: auto !important;
+            /* Sangat penting: Mempertahankan rasio aspek berdasarkan lebar */
+            object-fit: contain;
+            /* Memastikan seluruh gambar terlihat dalam bingkai tanpa distorsi */
+        }
+
+        .wp-image-1892 {
+            max-width: 100%;
+            /* Memastikan gambar tidak melebihi lebar kontainernya */
+            height: auto !important;
+            /* Sangat penting: Mempertahankan rasio aspek berdasarkan lebar */
+            object-fit: contain;
+            /* Memastikan seluruh gambar terlihat dalam bingkai tanpa distorsi */
+        }
+
+        .elementor-element-c0ffee42 {
+            /* Mengubah latar belakang kolom menjadi biru */
+            background-color: rgba(0, 123, 255, 0.7) !important;
+            padding-top: 12px !important;
+            padding-bottom: 12px !important;
+        }
+
+        .elementor-element-f00d1e3 .elementor-heading-title {
+            /* Mengubah warna teks menjadi putih */
+            color: white !important;
+            /* Menerapkan font family yang Anda inginkan */
+            font-family: "Ms Madi", sans-serif !important;
+            /* MEMPOSISIKAN TEKS DI TENGAH */
+            text-align: center !important;
+        }
+
+        .elementor-element-176e91a4 {
+            /* Mengatur warna latar belakang menjadi rgba(0, 123, 255, 0.7) */
+            background-color: rgba(0, 123, 255, 0.7) !important;
+            /* Catatan: !important digunakan untuk memastikan gaya ini menimpa gaya bawaan Elementor */
+        }
+
+        .elementor-divider-separator {
+            background-color: #1a237e !important;
+            /* biru Damkar */
+            height: 2px !important;
+            /* tebal garis, bisa diubah */
+            display: block !important;
+        }
+
+        .Bluetext {
+            color: #1a237e !important;
+        }
+
+        .Bluetextmuda {
+            color: rgba(146, 185, 244, 0.7) !important;
+        }
+
+        .button-blue {
+            background-color: rgba(0, 123, 255, 0.7) !important;
+            /* biru Damkar transparan */
+            color: white !important;
+            /* teks tombol tetap putih */
+            border-radius: 8px !important;
+            /* sudut membulat */
+            padding: 10px 20px !important;
+            /* ruang tombol */
+            text-align: center !important;
+            display: inline-block !important;
+            text-decoration: none !important;
+            /* hapus garis bawah */
+            transition: background-color 0.3s ease !important;
+            /* animasi hover */
+        }
+
+        .button-blue:hover {
+            background-color: rgba(0, 123, 255, 1) !important;
+            /* biru penuh saat hover */
+        }
+
+        .wpkoi-elements-countdown-items .wpkoi-elements-countdown-item>div {
+            background-color: rgba(146, 185, 244, 0.7) !important;
+            /* biru Damkar 70% opacity */
+            color: white !important;
+            /* teks tetap putih */
+            border-radius: 8px !important;
+            /* sudut kotak membulat */
+            padding: 10px !important;
+            /* ruang di dalam kotak */
+            text-align: center !important;
+            /* teks di tengah kotak */
+        }
+
+        .heading-white {
+            color: white !important;
+        }
+
+
+
         img:is([sizes="auto" i], [sizes^="auto," i]) {
             contain-intrinsic-size: 3000px 1500px
         }
@@ -22,16 +211,14 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="The Wedding of Abizar &amp; Aulia" />
     <meta property="og:description" content="Minggu, 30 November 2025" />
-    <meta property="og:url" content="https://menujuacara.com/hilmy-indah/" />
     <meta property="og:site_name" content="Undangan Digital Website" />
     <meta property="article:published_time" content="2025-08-08T06:33:06+00:00" />
     <meta property="article:modified_time" content="2025-08-08T10:17:06+00:00" />
-    <meta property="og:image" content="https://menujuacara.com/wp-content/uploads/2025/04/tumb-kartun3d-eks9a.jpg" />
     <meta property="og:image:width" content="226" />
     <meta property="og:image:height" content="226" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta name="author" content="Editor Dwi" />
-    
+
 
 
     <link rel='dns-prefetch' href='//unpkg.com' />
@@ -1490,8 +1677,7 @@
     <link rel='stylesheet' id='e-animation-zoomIn-css'
         href='https://menujuacara.com/wp-content/plugins/elementor/assets/lib/animations/styles/zoomIn.min.css?ver=3.28.1'
         media='all' />
-    <link rel='stylesheet' id='elementor-post-191811-css'
-        href='https://menujuacara.com/wp-content/uploads/elementor/css/post-191811.css?ver=1754648242' media='all' />
+    <link rel='stylesheet' id='elementor-post-191811-css' href='css.css' media='all' />
     <link rel='stylesheet' id='happy-icons-css'
         href='https://menujuacara.com/wp-content/plugins/happy-elementor-addons/assets/fonts/style.min.css?ver=3.16.5'
         media='all' />
@@ -1573,7 +1759,7 @@
             <div class="elementor-container elementor-column-gap-default">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-12ed2746"
                     data-id="12ed2746" data-element_type="column" id="home"
-                    data-settings="{&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1889,&quot;url&quot;:&quot;https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/03\/eks9karakter.jpg&quot;},{&quot;id&quot;:1890,&quot;url&quot;:&quot;https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/03\/eks9karakter1.jpg&quot;},{&quot;id&quot;:1891,&quot;url&quot;:&quot;https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/03\/eks9karakter2.jpg&quot;}],&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_slide_duration&quot;:2000,&quot;background_slideshow_transition_duration&quot;:5000,&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;}">
+                    data-settings="{&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1889,&quot;url&quot;:&quot;https://i.pinimg.com/736x/65/46/66/654666002267d8971e5bd143dcf05f7a.jpg&quot;},{&quot;id&quot;:1890,&quot;url&quot;:&quot;https://i.pinimg.com/736x/e5/22/a0/e522a070e648410bd5f6666a8534bc93.jpg&quot;},{&quot;id&quot;:1891,&quot;url&quot;:&quot;https://i.pinimg.com/736x/75/86/48/758648a786dcbd1f0274453241b4ab34.jpg&quot;}],&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_slide_duration&quot;:2000,&quot;background_slideshow_transition_duration&quot;:5000,&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;}">
                     <div class="elementor-widget-wrap elementor-element-populated">
                         <div class="elementor-background-overlay"></div>
                         <section
@@ -1599,8 +1785,9 @@
                                             data-settings="{&quot;_animation&quot;:&quot;none&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">The Wedding
-                                                    Of</h2>
+                                                <h2
+                                                    class="elementor-heading-title elementor-size-default heading-white">
+                                                    The Wedding Of</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-5ca4d206 anim zoomOne elementor-widget elementor-widget-heading"
@@ -1608,7 +1795,9 @@
                                             data-settings="{&quot;_animation&quot;:&quot;none&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Abizar &amp;
+                                                <h2
+                                                    class="elementor-heading-title elementor-size-default heading-white">
+                                                    Abizar &amp;
                                                     Aulia</h2>
                                             </div>
                                         </div>
@@ -1617,7 +1806,10 @@
                                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Minggu, 30 November 2025</h2>
+                                                <h2
+                                                    class="elementor-heading-title elementor-size-default heading-white">
+                                                    Minggu, 30
+                                                    November 2025</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-5a7d74aa elementor-widget elementor-widget-spacer"
@@ -1727,9 +1919,9 @@
                             data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <img fetchpriority="high" decoding="async" width="507" height="800"
-                                    src="https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1.png"
+                                    src="https://i.pinimg.com/736x/61/c3/6c/61c36cb0204ff05c9aef939a88d9afa6.jpg"
                                     class="attachment-large size-large wp-image-1511" alt=""
-                                    srcset="https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1.png 507w, https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1-190x300.png 190w"
+                                    srcset="https://i.pinimg.com/736x/61/c3/6c/61c36cb0204ff05c9aef939a88d9afa6.jpg 507w, https://i.pinimg.com/736x/61/c3/6c/61c36cb0204ff05c9aef939a88d9afa6.jpg 190w"
                                     sizes="(max-width: 507px) 100vw, 507px" />
                             </div>
                         </div>
@@ -1738,7 +1930,7 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Our</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Our</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-7f5ac091 anim fadeup elementor-invisible elementor-widget elementor-widget-heading"
@@ -1746,7 +1938,7 @@
                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-aos="fade-up" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Wedding</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Wedding</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-531653ad anim fadeup elementor-invisible elementor-widget elementor-widget-heading"
@@ -1754,7 +1946,8 @@
                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Tanpa mengurangi rasa hormat,
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Tanpa mengurangi
+                                    rasa hormat,
                                     kami bermaksud mengundang Bapak/Ibu/Saudara/I untuk menghadiri acara pernikahan kami
                                 </h2>
                             </div>
@@ -1776,7 +1969,7 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Hilmy</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Abie</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-e921bc8 anim fadeup elementor-widget elementor-widget-heading"
@@ -1784,7 +1977,7 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Hilmy Nugroho</h2>
+                                <h2 class="elementor-heading-title elementor-size-default">Abizar Yusrin</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-205baa08 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
@@ -1801,8 +1994,10 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Putra Kedua dari <br>Bpk.
-                                    Budi Santoso (Alm)<br>&amp; Ibu Rudiyanti</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Putra Pertama dari
+                                    <br>Bpk.
+                                    Muhammad Yusuf<br>&amp; Ibu Rinta Widayati
+                                </h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-15b50711 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
@@ -1858,9 +2053,9 @@
                             data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <img decoding="async" width="888" height="1182"
-                                    src="https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter4.jpg"
+                                    src="https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg"
                                     class="attachment-full size-full wp-image-1893" alt=""
-                                    srcset="https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter4.jpg 888w, https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter4-225x300.jpg 225w, https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter4-769x1024.jpg 769w, https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter4-768x1022.jpg 768w"
+                                    srcset="https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg 888w, https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg 225w, https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg 769w, https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg 768w"
                                     sizes="(max-width: 888px) 100vw, 888px" />
                             </div>
                         </div>
@@ -1873,16 +2068,16 @@
             data-id="35634076" data-element_type="section"
             data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation_mobile&quot;:&quot;none&quot;}">
             <div class="elementor-container elementor-column-gap-default">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-176e91a4 anim zoom"
-                    data-id="176e91a4" data-element_type="column"
+                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-c0ffee42 anim zoom"
+                    data-id="c0ffee42" data-element_type="column"
                     data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
                     <div class="elementor-widget-wrap elementor-element-populated">
-                        <div class="elementor-element elementor-element-65a05e73 anim zoom elementor-widget elementor-widget-heading"
-                            data-id="65a05e73" data-element_type="widget"
+                        <div class="elementor-element elementor-element-f00d1e3 anim zoom elementor-widget elementor-widget-heading"
+                            data-id="f00d1e3" data-element_type="widget"
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Hilmy &amp; Indah</h2>
+                                <h2 class="elementor-heading-title elementor-size-default">Abizar &amp; Aulia</h2>
                             </div>
                         </div>
                     </div>
@@ -1914,9 +2109,9 @@
                             data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <img loading="lazy" decoding="async" width="888" height="1182"
-                                    src="https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter3.jpg"
+                                    src="https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg"
                                     class="attachment-full size-full wp-image-1892" alt=""
-                                    srcset="https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter3.jpg 888w, https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter3-225x300.jpg 225w, https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter3-769x1024.jpg 769w, https://menujuacara.com/wp-content/uploads/2025/03/eks9karakter3-768x1022.jpg 768w"
+                                    srcset="https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg 888w, https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg 225w, https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg 769w, https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg 768w"
                                     sizes="(max-width: 888px) 100vw, 888px" />
                             </div>
                         </div>
@@ -1930,7 +2125,7 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Indah</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Aul</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-64f25fdd anim fadeup elementor-widget elementor-widget-heading"
@@ -1938,7 +2133,8 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Indah Melina</h2>
+                                <h2 class="elementor-heading-title elementor-size-default">Aulia Nur Asyifah Febriani
+                                </h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-1eacee3c elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
@@ -1955,8 +2151,10 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Putri Kedua dari <br>Bpk.
-                                    Dadang Ahmid S.Pd, M.M<br>&amp; Ibu Yulina (Almh)</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Putri Pertama Dari
+                                    <br>Bpk.
+                                    Kingking sholih wahyudin<br>&amp; Ibu Rukmini (Iis)
+                                </h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-3ba8fe9 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
@@ -2006,16 +2204,16 @@
                             data-id="4631ecb3" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <img fetchpriority="high" decoding="async" width="507" height="800"
-                                    src="https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1.png"
+                                    src="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png"
                                     class="attachment-large size-large wp-image-1511" alt=""
-                                    srcset="https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1.png 507w, https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1-190x300.png 190w"
+                                    srcset="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png 507w, https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png 190w"
                                     sizes="(max-width: 507px) 100vw, 507px" />
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-296a09a1 anim fadeup elementor-widget elementor-widget-heading"
                             data-id="296a09a1" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">SAVE</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">SAVE</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-775697ee anim faderight elementor-widget elementor-widget-heading"
@@ -2036,21 +2234,24 @@
                                             data-id="6344fbfe" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Akad</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Akad
+                                                </h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-25896c56 anim faderight elementor-widget elementor-widget-heading"
                                             data-id="25896c56" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Nikah</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetextmuda">
+                                                    Nikah</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-42dac7ed anim zoom elementor-widget elementor-widget-heading"
                                             data-id="42dac7ed" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Sabtu</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    Minggu</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-71e8f93a elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
@@ -2068,10 +2269,10 @@
                                             data-widget_type="counter.default">
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-counter">
-                                                    <div class="elementor-counter-number-wrapper">
+                                                    <div class="elementor-counter-number-wrapper Bluetext">
                                                         <span class="elementor-counter-number-prefix"></span>
                                                         <span class="elementor-counter-number" data-duration="1000"
-                                                            data-to-value="23" data-from-value="0"
+                                                            data-to-value="30" data-from-value="0"
                                                             data-delimiter=",">0</span>
                                                         <span class="elementor-counter-number-suffix"></span>
                                                     </div>
@@ -2092,7 +2293,8 @@
                                             data-id="5689965f" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Agustus 2025
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    November 2025
                                                 </h2>
                                             </div>
                                         </div>
@@ -2101,7 +2303,8 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Pukul 10.00
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    Pukul 08.00
                                                     WIB</h2>
                                             </div>
                                         </div>
@@ -2110,9 +2313,9 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Gor Pemadam
-                                                    Kebakaran, <br>Jl Raya Joglo Asrama Pemadam <br>Kebakaran, Kel.
-                                                    Joglo Kec. Kembangan</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default">Lisung Dulang
+                                                    Resto, <br>Jl. Bukit Pakar Timur No.111 <br>Ciburial, Kec. Cimenyan,
+                                                    Kabupaten Bandung, Jawa Barat 40198</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-13a6055c elementor-align-center anim fadedown elementor-widget elementor-widget-button"
@@ -2121,7 +2324,7 @@
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-button-wrapper">
                                                     <a class="elementor-button elementor-button-link elementor-size-sm"
-                                                        href="https://maps.app.goo.gl/XXohCZXwzfrhpTTK8?g_st=iw">
+                                                        href="https://maps.app.goo.gl/y8ZWrZTuryk6MfnT6">
                                                         <span class="elementor-button-content-wrapper">
                                                             <span class="elementor-button-icon">
                                                                 <svg aria-hidden="true"
@@ -2142,8 +2345,8 @@
                                             data-id="7fc7a4a6" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Hilmy &amp;
-                                                    Indah</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default">Abizar &amp;
+                                                    Aulia</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -2164,21 +2367,24 @@
                                             data-id="6bb0f579" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Resepsi</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    Resepsi</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-2aeee0ca anim faderight elementor-widget elementor-widget-heading"
                                             data-id="2aeee0ca" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Nikah</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetextmuda">
+                                                    Nikah</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-1f5399d1 anim zoom elementor-widget elementor-widget-heading"
                                             data-id="1f5399d1" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Sabtu</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    Minggu</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-3242b008 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
@@ -2196,10 +2402,10 @@
                                             data-widget_type="counter.default">
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-counter">
-                                                    <div class="elementor-counter-number-wrapper">
+                                                    <div class="elementor-counter-number-wrapper Bluetext">
                                                         <span class="elementor-counter-number-prefix"></span>
                                                         <span class="elementor-counter-number" data-duration="1000"
-                                                            data-to-value="23" data-from-value="0"
+                                                            data-to-value="30" data-from-value="0"
                                                             data-delimiter=",">0</span>
                                                         <span class="elementor-counter-number-suffix"></span>
                                                     </div>
@@ -2220,7 +2426,8 @@
                                             data-id="1b5be5df" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Agustus 2025
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    November 2025
                                                 </h2>
                                             </div>
                                         </div>
@@ -2229,8 +2436,9 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Pukul 12.00 -
-                                                    17.00 WIB</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    Pukul 10.00 -
+                                                    14.00 WIB</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-498e47da anim fadeup elementor-invisible elementor-widget elementor-widget-heading"
@@ -2238,9 +2446,9 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Gor Pemadam
-                                                    Kebakaran, <br>Jl Raya Joglo Asrama Pemadam <br>Kebakaran, Kel.
-                                                    Joglo Kec. Kembangan</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default">Lisung Dulang
+                                                    Resto, <br>Jl. Bukit Pakar Timur No.111 <br>Ciburial, Kec. Cimenyan,
+                                                    Kabupaten Bandung, Jawa Barat 40198</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-25c32f6e elementor-align-center anim fadedown elementor-widget elementor-widget-button"
@@ -2249,7 +2457,7 @@
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-button-wrapper">
                                                     <a class="elementor-button elementor-button-link elementor-size-sm"
-                                                        href="https://maps.app.goo.gl/XXohCZXwzfrhpTTK8?g_st=iw">
+                                                        href="https://maps.app.goo.gl/y8ZWrZTuryk6MfnT6">
                                                         <span class="elementor-button-content-wrapper">
                                                             <span class="elementor-button-icon">
                                                                 <svg aria-hidden="true"
@@ -2275,7 +2483,7 @@
             </div>
         </section>
         <section
-            class="elementor-section elementor-top-section elementor-element elementor-element-32c6e218 elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+            class="elementor-section elementor-top-section elementor-element elementor-element-32c6e218 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
             data-id="32c6e218" data-element_type="section"
             data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
             <div class="elementor-container elementor-column-gap-default">
@@ -2294,22 +2502,22 @@
                             data-id="17d1e830" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <img fetchpriority="high" decoding="async" width="507" height="800"
-                                    src="https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1.png"
+                                    src="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png"
                                     class="attachment-large size-large wp-image-1511" alt=""
-                                    srcset="https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1.png 507w, https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1-190x300.png 190w"
+                                    srcset="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png 507w, https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png 190w"
                                     sizes="(max-width: 507px) 100vw, 507px" />
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-310c4d61 anim fadeup elementor-widget elementor-widget-heading"
                             data-id="310c4d61" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Love</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Love</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-2063ae73 anim faderight elementor-widget elementor-widget-heading"
                             data-id="2063ae73" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Story</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetextmuda">Story</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-7f74783a anim zoom elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-image"
@@ -2323,15 +2531,15 @@
                                     sizes="(max-width: 888px) 100vw, 888px" />
                             </div>
                         </div>
-                        <div class="elementor-element elementor-element-5020f5b5 anim zoom elementor-widget elementor-widget-image"
+                        <div class="elementor-element elementor-element-5020f5b5 anim zoom elementor-widget elementor-widget-video"
                             data-id="5020f5b5" data-element_type="widget"
-                            data-settings="{&quot;_animation&quot;:&quot;none&quot;}" data-widget_type="image.default">
+                            data-settings="{&quot;_animation&quot;:&quot;none&quot;}" data-widget_type="video.default">
                             <div class="elementor-widget-container">
-                                <img loading="lazy" decoding="async" width="1024" height="1024"
-                                    src="https://menujuacara.com/wp-content/uploads/2025/03/5b0ebf3a-8440-4dfc-a8fe-fd1f3f83b9f9.jpg"
-                                    class="attachment-full size-full wp-image-1895" alt=""
-                                    srcset="https://menujuacara.com/wp-content/uploads/2025/03/5b0ebf3a-8440-4dfc-a8fe-fd1f3f83b9f9.jpg 1024w, https://menujuacara.com/wp-content/uploads/2025/03/5b0ebf3a-8440-4dfc-a8fe-fd1f3f83b9f9-300x300.jpg 300w, https://menujuacara.com/wp-content/uploads/2025/03/5b0ebf3a-8440-4dfc-a8fe-fd1f3f83b9f9-150x150.jpg 150w, https://menujuacara.com/wp-content/uploads/2025/03/5b0ebf3a-8440-4dfc-a8fe-fd1f3f83b9f9-768x768.jpg 768w"
-                                    sizes="(max-width: 1024px) 100vw, 1024px" />
+                                <div class="elementor-wrapper elementor-fit-aspect-ratio elementor-open-inline">
+                                    <video class="elementor-video" src="KisahCinta.mp4" controls autoplay loop muted
+                                        playsinline>
+                                    </video>
+                                </div>
                             </div>
                         </div>
                         <section
@@ -2347,7 +2555,8 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Awal Bertemu
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Awal
+                                                    pertemuan sederhana
                                                 </h2>
                                             </div>
                                         </div>
@@ -2356,8 +2565,13 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Kisah ini
-                                                    berawal dari pertemuan kita di bulan mei tahun 2020.</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default">Pada awal
+                                                    bulan april 2025, abizar yang sedang melaksanakan projec kerja di
+                                                    salah satu mall di bandung dan aulia yang sedang menjaga stand
+                                                    perbelanjaan tidak sengaja bertemu di salah satu mall di kota
+                                                    bandung. Namun diam diam tersimpan rasa kagum sejak awal melihat dan
+                                                    mulai bercanda ria.
+                                                </h2>
                                             </div>
                                         </div>
                                     </div>
@@ -2371,7 +2585,8 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Jadian</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    Benih cinta dalam ujian</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-3e2aca6b anim faderight elementor-invisible elementor-widget elementor-widget-heading"
@@ -2379,9 +2594,10 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Setelah
-                                                    menjalani hubungan selama 3 tahun, kita berkomitmen untuk masa depan
-                                                    hubungan kita.</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default">Dalam
+                                                    kesibukan dan ujian kerja, kami menemukan ketenangan dan kenyamanan
+                                                    lewat komunikasi sederhana di jejaring instagram dan berlanjut ke
+                                                    whats app. Dari situlah kisah suci kami dimulai.</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -2395,7 +2611,8 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Lamaran</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default Bluetext">
+                                                    Langkah menuju ridho Allah</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-4d1f841b anim faderight elementor-invisible elementor-widget elementor-widget-heading"
@@ -2403,13 +2620,38 @@
                                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Firman
-                                                    memberanikan diri membawa keluarganya bersilaturahmi ke rumah ku,
-                                                    dan meminta ku untuk menikah dengannya.</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default">Dengan niat
+                                                    tulus dan restu keluaga, pada awal mei 2025 kami sepakat melangkah
+                                                    bersama dalam ikatan "khitbah" dan dengan niat baik ini serta ridhai
+                                                    Allah sampailah di penghujung yg insya allah dalam waktu dekat akan
+                                                    berlangsung akad suci.</h2>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="elegant-slideshow-container">
+
+                                <div class="auto-slide fade-animation">
+                                    <img src="1.jpeg" alt="Slide 1">
+                                </div>
+
+                                <div class="auto-slide fade-animation">
+                                    <img src="2.jpeg" alt="Slide 2">
+                                </div>
+
+                                <div class="auto-slide fade-animation">
+                                    <img src="3.jpeg" alt="Slide 3">
+                                </div>
+
+                                <div class="auto-slide fade-animation">
+                                    <img src="4.jpeg" alt="Slide 4">
+                                </div>
+
+                                <div class="auto-slide fade-animation">
+                                    <img src="5.jpeg" alt="Slide 5">
+                                </div>
+
                             </div>
                         </section>
                         <div class="elementor-element elementor-element-3a7bf65c elementor-widget elementor-widget-spacer"
@@ -2504,30 +2746,32 @@
                             data-id="35ae3460" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <img fetchpriority="high" decoding="async" width="507" height="800"
-                                    src="https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1.png"
+                                    src="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png"
                                     class="attachment-large size-large wp-image-1511" alt=""
-                                    srcset="https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1.png 507w, https://menujuacara.com/wp-content/uploads/2025/03/ornamen-bunga-cream-1-190x300.png 190w"
+                                    srcset="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png 507w, https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png 190w"
                                     sizes="(max-width: 507px) 100vw, 507px" />
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-4c0ab70f anim fadeup elementor-widget elementor-widget-heading"
                             data-id="4c0ab70f" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Wedding</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Wedding</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-10cef78 anim faderight elementor-widget elementor-widget-heading"
                             data-id="10cef78" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Gift</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetextmuda">Gift</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-3a368f04 anim fadeup elementor-widget elementor-widget-heading"
                             data-id="3a368f04" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Doa Restu Anda merupakan
-                                    karunia yang<br>sangat berarti bagi kami. Dan jika memberi<br>adalah ungkapan tanda
-                                    kasih Anda,<br>Anda dapat memberi kado secara cashless.</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Doa dan restu Anda
+                                    merupakan anugerah terindah serta hadiah paling berharga bagi kami.
+                                    Kehadiran Anda telah menjadi wujud kasih yang tak ternilai.
+                                    Bagi yang ingin turut berbagi kebahagiaan,
+                                    kami dengan penuh rasa syukur menyediakan pilihan tanda kasih secara cashless.</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-7882f290 elementor-align-center elementor-widget__width-auto elementor-widget-mobile__width-auto anim zoom elementor-widget elementor-widget-button"
@@ -2587,7 +2831,7 @@
 
                                                                 <div class="head-title"></div>
                                                                 <div class="elementor-button-wrapper">
-                                                                    <div class="copy-content spancontent">8870451441
+                                                                    <div class="copy-content spancontent">6920293113
                                                                     </div>
 
                                                                     <a style="cursor:pointer;" onclick="copyText(this)"
@@ -2657,7 +2901,7 @@
                                                             <div class="elementor-widget-container">
                                                                 <p
                                                                     class="elementor-heading-title elementor-size-default">
-                                                                    A/n HILMY NUGROHO</p>
+                                                                    A/n ABIZAR YUSRIN</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2678,10 +2922,10 @@
                                                             <div class="elementor-widget-container">
                                                                 <img loading="lazy" decoding="async" width="755"
                                                                     height="228"
-                                                                    src="https://menujuacara.com/wp-content/uploads/2025/04/seabank-logo-putih.png"
+                                                                    src="https://menujuacara.com/wp-content/uploads/2025/06/BCA-white-Logo-1-3-2.png"
                                                                     class="attachment-large size-large wp-image-12266"
                                                                     alt=""
-                                                                    srcset="https://menujuacara.com/wp-content/uploads/2025/04/seabank-logo-putih.png 755w, https://menujuacara.com/wp-content/uploads/2025/04/seabank-logo-putih-300x91.png 300w"
+                                                                    srcset="https://menujuacara.com/wp-content/uploads/2025/06/BCA-white-Logo-1-3-2.png 755w, https://menujuacara.com/wp-content/uploads/2025/06/BCA-white-Logo-1-3-2.png 300w"
                                                                     sizes="(max-width: 755px) 100vw, 755px" />
                                                             </div>
                                                         </div>
@@ -2694,7 +2938,7 @@
 
                                                                 <div class="head-title"></div>
                                                                 <div class="elementor-button-wrapper">
-                                                                    <div class="copy-content spancontent">901944256160
+                                                                    <div class="copy-content spancontent">8380208190
                                                                     </div>
 
                                                                     <a style="cursor:pointer;" onclick="copyText(this)"
@@ -2764,7 +3008,7 @@
                                                             <div class="elementor-widget-container">
                                                                 <p
                                                                     class="elementor-heading-title elementor-size-default">
-                                                                    A/n INDAH MELINA</p>
+                                                                    A/n AULIA NUR ASYIFAH FEBRIA</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2804,7 +3048,7 @@
                             <div class="elementor-widget-container">
                                 <div class="elementor-button-wrapper">
                                     <a class="elementor-button elementor-button-link elementor-size-sm"
-                                        href="https://wa.me/62895326335119?text=hai+saya+%5Bnama%5D+mau+konfirmasi+pengiriman+amplop+online+sebesar+%5B00.000%5D+mohon+di+cek+di+mobile+banking+semoga+berkah+ya+acaranya">
+                                        href="https://wa.me/62881023039186?text=hai+saya+%5Bnama%5D+mau+konfirmasi+pengiriman+amplop+online+sebesar+%5B00.000%5D+mohon+di+cek+di+mobile+banking+semoga+berkah+ya+acaranya">
                                         <span class="elementor-button-content-wrapper">
                                             <span class="elementor-button-icon">
                                                 <svg aria-hidden="true" class="e-font-icon-svg e-fab-whatsapp"
@@ -2819,214 +3063,38 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="elementor-element elementor-element-365ddbae elementor-widget-divider--view-line_icon anim zoom elementor-view-default elementor-widget-divider--element-align-center elementor-widget elementor-widget-divider"
-                            data-id="365ddbae" data-element_type="widget" data-widget_type="divider.default">
-                            <div class="elementor-widget-container">
-                                <div class="elementor-divider">
-                                    <span class="elementor-divider-separator">
-                                        <div class="elementor-icon elementor-divider__element">
-                                            <i aria-hidden="true" class="hm hm-gift-box"></i>
-                                        </div>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-466c7c33 elementor-align-center elementor-widget__width-auto elementor-widget-mobile__width-auto anim zoom elementor-widget elementor-widget-button"
-                            data-id="466c7c33" data-element_type="widget" data-widget_type="button.default">
-                            <div class="elementor-widget-container">
-                                <div class="elementor-button-wrapper">
-                                    <a class="elementor-button elementor-size-sm" role="button" id="btnKado">
-                                        <span class="elementor-button-content-wrapper">
-                                            <span class="elementor-button-icon">
-                                                <svg aria-hidden="true" class="e-font-icon-svg e-fas-gifts"
-                                                    viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M240.6 194.1c1.9-30.8 17.3-61.2 44-79.8C279.4 103.5 268.7 96 256 96h-29.4l30.7-22c7.2-5.1 8.9-15.1 3.7-22.3l-9.3-13c-5.1-7.2-15.1-8.9-22.3-3.7l-32 22.9 11.5-30.6c3.1-8.3-1.1-17.5-9.4-20.6l-15-5.6c-8.3-3.1-17.5 1.1-20.6 9.4l-19.9 53-19.9-53.1C121 2.1 111.8-2.1 103.5 1l-15 5.6C80.2 9.7 76 19 79.2 27.2l11.5 30.6L58.6 35c-7.2-5.1-17.2-3.5-22.3 3.7l-9.3 13c-5.1 7.2-3.5 17.2 3.7 22.3l30.7 22H32c-17.7 0-32 14.3-32 32v352c0 17.7 14.3 32 32 32h168.9c-5.5-9.5-8.9-20.3-8.9-32V256c0-29.9 20.8-55 48.6-61.9zM224 480c0 17.7 14.3 32 32 32h160V384H224v96zm224 32h160c17.7 0 32-14.3 32-32v-96H448v128zm160-288h-20.4c2.6-7.6 4.4-15.5 4.4-23.8 0-35.5-27-72.2-72.1-72.2-48.1 0-75.9 47.7-87.9 75.3-12.1-27.6-39.9-75.3-87.9-75.3-45.1 0-72.1 36.7-72.1 72.2 0 8.3 1.7 16.2 4.4 23.8H256c-17.7 0-32 14.3-32 32v96h192V224h15.3l.7-.2.7.2H448v128h192v-96c0-17.7-14.3-32-32-32zm-272 0c-2.7-1.4-5.1-3-7.2-4.8-7.3-6.4-8.8-13.8-8.8-19 0-9.7 6.4-24.2 24.1-24.2 18.7 0 35.6 27.4 44.5 48H336zm199.2-4.8c-2.1 1.8-4.5 3.4-7.2 4.8h-52.6c8.8-20.3 25.8-48 44.5-48 17.7 0 24.1 14.5 24.1 24.2 0 5.2-1.5 12.6-8.8 19z">
-                                                    </path>
-                                                </svg> </span>
-                                            <span class="elementor-button-text">Kirim Kado</span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <section
-                            class="elementor-section elementor-inner-section elementor-element elementor-element-52eae99e elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-                            data-id="52eae99e" data-element_type="section" id="kado">
-                            <div class="elementor-container elementor-column-gap-default">
-                                <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-7cef848d"
-                                    data-id="7cef848d" data-element_type="column"
-                                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                                    <div class="elementor-widget-wrap elementor-element-populated">
-                                        <section
-                                            class="elementor-section elementor-inner-section elementor-element elementor-element-2712ec19 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-                                            data-id="2712ec19" data-element_type="section">
-                                            <div class="elementor-container elementor-column-gap-default">
-                                                <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-4cd92e67"
-                                                    data-id="4cd92e67" data-element_type="column"
-                                                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                                                    <div class="elementor-widget-wrap elementor-element-populated">
-                                                        <div class="elementor-element elementor-element-76466330 elementor-widget elementor-widget-spacer"
-                                                            data-id="76466330" data-element_type="widget"
-                                                            data-widget_type="spacer.default">
-                                                            <div class="elementor-widget-container">
-                                                                <div class="elementor-spacer">
-                                                                    <div class="elementor-spacer-inner"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="elementor-element elementor-element-6ce36e22 elementor-align-center elementor-widget elementor-widget-weddingpress-copy-text"
-                                                            data-id="6ce36e22" data-element_type="widget"
-                                                            data-widget_type="weddingpress-copy-text.default">
-                                                            <div class="elementor-widget-container">
-
-                                                                <div class="elementor-image img"></div>
-
-                                                                <div class="head-title"></div>
-                                                                <div class="elementor-button-wrapper">
-                                                                    <div class="copy-content spancontent">Penerima :
-                                                                        Indah Melina<br>0895326335119<br><br>
-                                                                        Jl. Joglo Raya Komplek Pemadam Jakarta Barat,
-                                                                        RT.12 RW.02 No. 25 Kembangan, Kota Jakarta
-                                                                        Barat, DKI Jakarta, ID 11640</div>
-
-                                                                    <a style="cursor:pointer;" onclick="copyText(this)"
-                                                                        data-message="berhasil disalin"
-                                                                        class="elementor-button" role="button">
-
-                                                                        <div class="elementor-button-content-wrapper">
-                                                                            <span
-                                                                                class="elementor-button-icon elementor-align-icon-">
-                                                                                <svg aria-hidden="true"
-                                                                                    class="e-font-icon-svg e-far-copy"
-                                                                                    viewBox="0 0 448 512"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path
-                                                                                        d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z">
-                                                                                    </path>
-                                                                                </svg> </span>
-                                                                            <span class="elementor-button-text">Salin
-                                                                                Alamat Kirim Kado</span>
-                                                                        </div>
-                                                                    </a>
-
-                                                                </div>
-
-                                                                <style type="text/css">
-                                                                    .spancontent {
-                                                                        padding-bottom: 20px;
-                                                                    }
-
-                                                                    .copy-content {
-                                                                        color: #6EC1E4;
-                                                                        text-align: center;
-                                                                    }
-
-                                                                    .head-title {
-                                                                        color: #6EC1E4;
-                                                                        text-align: center;
-                                                                    }
-                                                                </style>
-
-                                                                <script>
-                                                                    function copyText(el) {
-                                                                        var content = jQuery(el).siblings('div.copy-content').html()
-                                                                        var temp = jQuery("<textarea>");
-                                                                        jQuery("body").append(temp);
-                                                                        temp.val(content.replace(/<br ?\/?>/g, "\n")).select();
-                                                                        document.execCommand("copy");
-                                                                        temp.remove();
-                                                                        var text = jQuery(el).html()
-                                                                        jQuery(el).html(jQuery(el).data('message'))
-                                                                        var counter = 0;
-                                                                        var interval = setInterval(function () {
-                                                                            counter++;
-                                                                            if (counter == 1) {
-                                                                                jQuery(el).html(text)
-                                                                            }
-                                                                        }, 500);
-                                                                    }
-
-                                                                </script>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="elementor-element elementor-element-83988c elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-heading"
-                                                            data-id="83988c" data-element_type="widget"
-                                                            data-widget_type="heading.default">
-                                                            <div class="elementor-widget-container">
-                                                                <p
-                                                                    class="elementor-heading-title elementor-size-default">
-                                                                    A/n Nama Mempelai</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="elementor-element elementor-element-1da61535 elementor-widget elementor-widget-spacer"
-                                                            data-id="1da61535" data-element_type="widget"
-                                                            data-widget_type="spacer.default">
-                                                            <div class="elementor-widget-container">
-                                                                <div class="elementor-spacer">
-                                                                    <div class="elementor-spacer-inner"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <div class="elementor-element elementor-element-41edb2f0 elementor-widget elementor-widget-html"
-                            data-id="41edb2f0" data-element_type="widget" data-widget_type="html.default">
-                            <div class="elementor-widget-container">
-                                <style>
-                                    #kado {
-                                        display: none;
-                                    }
-                                </style>
-
-                                <script>
-                                    var btnKado = document.getElementById("btnKado");
-                                    var kado = document.getElementById("kado");
-
-                                    btnKado.onclick = function () {
-                                        if (kado.style.display === "block") {
-                                            kado.style.display = "none";
-                                        } else {
-                                            kado.style.display = "block";
-                                        }
-                                    };
-                                </script>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
         <section
-            class="elementor-section elementor-top-section elementor-element elementor-element-6fe4f0dc elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-            data-id="6fe4f0dc" data-element_type="section" id="ucapan"
+            class="elementor-section elementor-top-section elementor-element elementor-element-343bfc12 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+            data-id="343bfc12" data-element_type="section"
             data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
             <div class="elementor-container elementor-column-gap-default">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fc4feaa"
-                    data-id="fc4feaa" data-element_type="column"
-                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-69756dab"
+                    data-id="69756dab" data-element_type="column">
                     <div class="elementor-widget-wrap elementor-element-populated">
-                        <div class="elementor-element elementor-element-3c2af3a1 anim fadeup elementor-invisible elementor-widget elementor-widget-heading"
-                            data-id="3c2af3a1" data-element_type="widget"
-                            data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
-                            data-widget_type="heading.default">
+                        <div class="elementor-element elementor-element-35ae3460 anim fadeup elementor-widget elementor-widget-image"
+                            data-id="35ae3460" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Ucapan</h2>
+                                <img fetchpriority="high" decoding="async" width="507" height="800"
+                                    src="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png"
+                                    class="attachment-large size-large wp-image-1511" alt=""
+                                    srcset="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png 507w, https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/Desain%20tanpa%20judul%20(3).png 190w"
+                                    sizes="(max-width: 507px) 100vw, 507px" />
                             </div>
                         </div>
-                        <div class="elementor-element elementor-element-1a6c9312 anim faderight elementor-invisible elementor-widget elementor-widget-heading"
-                            data-id="1a6c9312" data-element_type="widget"
-                            data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
-                            data-widget_type="heading.default">
+                        <div class="elementor-element elementor-element-4c0ab70f anim fadeup elementor-widget elementor-widget-heading"
+                            data-id="4c0ab70f" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">&amp; Do'a</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">Ucapan</h2>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-10cef78 anim faderight elementor-widget elementor-widget-heading"
+                            data-id="10cef78" data-element_type="widget" data-widget_type="heading.default">
+                            <div class="elementor-widget-container">
+                                <h2 class="elementor-heading-title elementor-size-default Bluetextmuda">Doa</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-1bfccae6 anim fadeup elementor-widget elementor-widget-weddingpress-kit2"
@@ -3046,12 +3114,15 @@
                                             <div class="cui-comment-attendence">
                                                 <div id="invitation-count-191811" class="cui_comment_count_card_wrap">
                                                     <div class="cui_comment_count_card_row">
-                                                        <div class="cui_comment_count_card cui_card-hadir">
-                                                            <span>10</span><span>Hadir</span></div>
-                                                        <div class="cui_comment_count_card cui_card-tidak_hadir">
-                                                            <span>1</span><span>Tidak hadir</span></div>
-                                                        <div class="cui_comment_count_card cui_card-masih_ragu">
-                                                            <span>1</span><span>Masih Ragu</span></div>
+                                                        <div class="cui_comment_count_card Bluetext">
+                                                            <span>10</span><span>Hadir</span>
+                                                        </div>
+                                                        <div class="cui_comment_count_card Bluetext">
+                                                            <span>1</span><span>Tidak hadir</span>
+                                                        </div>
+                                                        <div class="cui_comment_count_card Bluetext">
+                                                            <span>1</span><span>Masih Ragu</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3189,11 +3260,11 @@
 
                                         /*warna form*/
                                         --bgForm: #fff;
-                                        --teksform: #59664A;
-                                        --borderForm: #59664A;
+                                        --teksform: #1a237e;
+                                        --borderForm: #1a237e;
 
                                         /*warna tombol kirim*/
-                                        --bgTombolKirim: #59664A;
+                                        --bgTombolKirim: #1a237e;
                                         --teksTombolKirim: #fff;
                                         --borderTombolKirim: #59664A;
                                         --bgTombolKirimSorot: #fff;
@@ -3331,16 +3402,17 @@
                         <div class="elementor-element elementor-element-332ce137 anim zoom elementor-widget elementor-widget-heading"
                             data-id="332ce137" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">QUOTES</h2>
+                                <h2 class="elementor-heading-title elementor-size-default Bluetext">QUOTES</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-27e3082a anim fadeup elementor-widget elementor-widget-heading"
                             data-id="27e3082a" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">"Ketika berbicara tentang
-                                    pernikahan, Allah mengatakan bahwa pasanganmu ibarat pakaian untukmu. Sebuah pakaian
-                                    bisa jadi pas atau kurang pas. Tapi, bagaimana pun juga pakaian akan menutupi,
-                                    melindungi, dan mempercantik ketidaksempurnaan"</h2>
+                                <h2 class="elementor-heading-title elementor-size-default">"Dalam Al-Qur’an, Allah
+                                    menggambarkan pasangan hidup sebagai “pakaian” bagi satu sama lain.
+                                    Sebagaimana pakaian yang melindungi, menutupi, dan menyempurnakan penampilan,
+                                    demikian pula pasangan diciptakan untuk saling menjaga, melengkapi, dan memperindah
+                                    kekurangan satu sama lain"</h2>
                             </div>
                         </div>
                     </div>
@@ -3355,10 +3427,11 @@
             data-part-speed="2" data-part-direction="bottom" data-hover-effect="noeffect" data-hover-size=""
             data-id="c4e990c" data-element_type="section"
             data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;pp_background_effects_enable&quot;:&quot;yes&quot;,&quot;effect_hide_tablet&quot;:&quot;label_off&quot;,&quot;effect_hide_mobile&quot;:&quot;label_off&quot;}">
+            <br><br><br>
             <div class="elementor-container elementor-column-gap-default">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6b3bdaa3"
                     data-id="6b3bdaa3" data-element_type="column"
-                    data-settings="{&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1890,&quot;url&quot;:&quot;https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/03\/eks9karakter1.jpg&quot;},{&quot;id&quot;:1889,&quot;url&quot;:&quot;https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/03\/eks9karakter.jpg&quot;}],&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_transition_duration&quot;:500}">
+                    data-settings="{&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1890,&quot;url&quot;:&quot;1.jpeg&quot;},{&quot;id&quot;:1889,&quot;url&quot;:&quot;3.jpeg&quot;}],&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_transition_duration&quot;:500}">
                     <div class="elementor-widget-wrap elementor-element-populated">
                         <div class="elementor-element elementor-element-51cee1d8 elementor-widget elementor-widget-spacer"
                             data-id="51cee1d8" data-element_type="widget" data-widget_type="spacer.default">
@@ -3380,29 +3453,18 @@
                                             data-id="2449d660" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Atas
+                                                <h2 class="elementor-heading-title elementor-size-default ucapan-kontras">Atas
                                                     kehadiran dan do'a restunya,<br>kami ucapkan terimakasih.</h2>
-                                            </div>
-                                        </div>
-                                        <div class="elementor-element elementor-element-58818d52 elementor-widget-divider--view-line_icon anim zoom elementor-view-default elementor-widget-divider--element-align-center elementor-widget elementor-widget-divider"
-                                            data-id="58818d52" data-element_type="widget"
-                                            data-widget_type="divider.default">
-                                            <div class="elementor-widget-container">
-                                                <div class="elementor-divider">
-                                                    <span class="elementor-divider-separator">
-                                                        <div class="elementor-icon elementor-divider__element">
-                                                            <i aria-hidden="true" class="hm hm-diamond-ring"></i>
-                                                        </div>
-                                                    </span>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-7225f880 anim fadedown elementor-widget elementor-widget-heading"
                                             data-id="7225f880" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Hilmy &amp;
-                                                    Indah</h2>
+                                                <h2
+                                                    class="elementor-heading-title elementor-size-default heading-white">
+                                                    Abizar &amp;
+                                                    Aulia</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -3425,48 +3487,11 @@
                             data-id="7a19af99" data-element_type="widget"
                             data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
                             data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Powered by :</h2>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-1bddbf78 elementor-widget elementor-widget-image"
-                            data-id="1bddbf78" data-element_type="widget" data-widget_type="image.default">
-                            <div class="elementor-widget-container">
-                                <a href="https://kipainvitation.com/">
-                                    <img loading="lazy" decoding="async" width="800" height="431"
-                                        src="https://menujuacara.com/wp-content/uploads/2025/03/kipa-logo-baru-3-2-1024x552.png"
-                                        class="attachment-large size-large wp-image-1880" alt=""
-                                        srcset="https://menujuacara.com/wp-content/uploads/2025/03/kipa-logo-baru-3-2-1024x552.png 1024w, https://menujuacara.com/wp-content/uploads/2025/03/kipa-logo-baru-3-2-300x162.png 300w, https://menujuacara.com/wp-content/uploads/2025/03/kipa-logo-baru-3-2-768x414.png 768w, https://menujuacara.com/wp-content/uploads/2025/03/kipa-logo-baru-3-2-1536x828.png 1536w, https://menujuacara.com/wp-content/uploads/2025/03/kipa-logo-baru-3-2.png 1975w"
-                                        sizes="(max-width: 800px) 100vw, 800px" /> </a>
-                            </div>
+
                         </div>
                         <div class="elementor-element elementor-element-67ba8775 elementor-shape-rounded elementor-grid-0 e-grid-align-center elementor-widget elementor-widget-social-icons"
                             data-id="67ba8775" data-element_type="widget" data-widget_type="social-icons.default">
                             <div class="elementor-widget-container">
-                                <div class="elementor-social-icons-wrapper elementor-grid">
-                                    <span class="elementor-grid-item">
-                                        <a class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-repeater-item-ce63d1b"
-                                            href="https://www.instagram.com/kipaproduction/" target="_blank">
-                                            <span class="elementor-screen-only">Instagram</span>
-                                            <svg class="e-font-icon-svg e-fab-instagram" viewBox="0 0 448 512"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
-                                                </path>
-                                            </svg> </a>
-                                    </span>
-                                    <span class="elementor-grid-item">
-                                        <a class="elementor-icon elementor-social-icon elementor-social-icon-whatsapp elementor-repeater-item-1a14a56"
-                                            href="https://wa.me/6285767925765/" target="_blank">
-                                            <span class="elementor-screen-only">Whatsapp</span>
-                                            <svg class="e-font-icon-svg e-fab-whatsapp" viewBox="0 0 448 512"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z">
-                                                </path>
-                                            </svg> </a>
-                                    </span>
-                                </div>
                             </div>
                         </div>
                         <section
@@ -3574,7 +3599,7 @@
                                                 <div class="elementor-column elementor-col-16 elementor-inner-column elementor-element elementor-element-70047297"
                                                     data-id="70047297" data-element_type="column">
                                                     <div class="elementor-widget-wrap elementor-element-populated">
-                                                        <div class="elementor-element elementor-element-78cf368 elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-icon"
+                                                        <div class="elementor-element elementor-element-51884900 elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-icon"
                                                             data-id="78cf368" data-element_type="widget"
                                                             data-widget_type="icon.default">
                                                             <div class="elementor-widget-container">
@@ -3599,7 +3624,7 @@
                                                 <div class="elementor-column elementor-col-16 elementor-inner-column elementor-element elementor-element-17d3438f"
                                                     data-id="17d3438f" data-element_type="column">
                                                     <div class="elementor-widget-wrap elementor-element-populated">
-                                                        <div class="elementor-element elementor-element-3272f138 elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-icon"
+                                                        <div class="elementor-element elementor-element-51884900 elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-icon"
                                                             data-id="3272f138" data-element_type="widget"
                                                             data-widget_type="icon.default">
                                                             <div class="elementor-widget-container">
@@ -3624,7 +3649,7 @@
                                                 <div class="elementor-column elementor-col-16 elementor-inner-column elementor-element elementor-element-3ee5d0e"
                                                     data-id="3ee5d0e" data-element_type="column">
                                                     <div class="elementor-widget-wrap elementor-element-populated">
-                                                        <div class="elementor-element elementor-element-7a6fc87b elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-icon"
+                                                        <div class="elementor-element elementor-element-51884900 elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-icon"
                                                             data-id="7a6fc87b" data-element_type="widget"
                                                             data-widget_type="icon.default">
                                                             <div class="elementor-widget-container">
@@ -3654,7 +3679,7 @@
                                                 <div class="elementor-column elementor-col-16 elementor-inner-column elementor-element elementor-element-1a27524c"
                                                     data-id="1a27524c" data-element_type="column">
                                                     <div class="elementor-widget-wrap elementor-element-populated">
-                                                        <div class="elementor-element elementor-element-22005fab elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-icon"
+                                                        <div class="elementor-element elementor-element-51884900 elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-icon"
                                                             data-id="22005fab" data-element_type="widget"
                                                             data-widget_type="icon.default">
                                                             <div class="elementor-widget-container">
@@ -3679,7 +3704,7 @@
                                                 <div class="elementor-column elementor-col-16 elementor-inner-column elementor-element elementor-element-1021e6a2"
                                                     data-id="1021e6a2" data-element_type="column">
                                                     <div class="elementor-widget-wrap elementor-element-populated">
-                                                        <div class="elementor-element elementor-element-4c548474 elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-weddingpress-audio"
+                                                        <div class="elementor-element elementor-element-51884900 elementor-view-stacked elementor-shape-square elementor-widget elementor-widget-weddingpress-audio"
                                                             data-id="4c548474" data-element_type="widget"
                                                             data-settings="{&quot;loop&quot;:&quot;yes&quot;}"
                                                             data-widget_type="weddingpress-audio.default">
@@ -3695,7 +3720,7 @@
 
                                                                     <audio id="song" loop>
                                                                         <source
-                                                                            src="https://menujuacara.com/wp-content/uploads/2025/08/Donne-Maula-Bercinta-Lewat-Kata-Official-Lyric-Video-OST-Jatuh-Cinta-Seperti-di-Film-Film-mp3cut-mp3cut.net_.mp3"
+                                                                            src="1.mp3"
                                                                             type="audio/mp3">
                                                                     </audio>
 
@@ -3753,7 +3778,7 @@
         <section
             class="elementor-section elementor-top-section elementor-element elementor-element-56bee227 elementor-section-height-min-height elementor-section-items-stretch elementor-section-boxed elementor-section-height-default"
             data-id="56bee227" data-element_type="section" id="cover"
-            data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1891,&quot;url&quot;:&quot;https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/03\/eks9karakter2.jpg&quot;},{&quot;id&quot;:1890,&quot;url&quot;:&quot;https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/03\/eks9karakter1.jpg&quot;},{&quot;id&quot;:1889,&quot;url&quot;:&quot;https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/03\/eks9karakter.jpg&quot;}],&quot;background_slideshow_transition_duration&quot;:600,&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;}">
+            data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1891,&quot;url&quot;:&quot;https://i.pinimg.com/736x/65/46/66/654666002267d8971e5bd143dcf05f7a.jpg&quot;},{&quot;id&quot;:1890,&quot;url&quot;:&quot;https://i.pinimg.com/736x/e5/22/a0/e522a070e648410bd5f6666a8534bc93.jpg&quot;},{&quot;id&quot;:1889,&quot;url&quot;:&quot;https://i.pinimg.com/736x/75/86/48/758648a786dcbd1f0274453241b4ab34.jpg&quot;}],&quot;background_slideshow_transition_duration&quot;:600,&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;}">
             <div class="elementor-background-overlay"></div>
             <div class="elementor-container elementor-column-gap-default">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9c57bf8"
@@ -3792,7 +3817,8 @@
                                             data-id="7a9abd59" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Minggu, 30 November 2025</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default">Minggu, 30
+                                                    November 2025</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-3b653a2a elementor-widget elementor-widget-spacer"
@@ -3817,7 +3843,8 @@
                                             data-settings="{&quot;_animation&quot;:&quot;zoomIn&quot;}"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default">Rekan Rekan Semua</h2>
+                                                <h2 class="elementor-heading-title elementor-size-default">Rekan Rekan
+                                                    Semua</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-40e7a592 elementor-align-center elementor-widget__width-auto animated-slow elementor-invisible elementor-widget elementor-widget-button"
@@ -3826,7 +3853,8 @@
                                             data-widget_type="button.default">
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-button-wrapper">
-                                                    <a class="elementor-button elementor-size-sm" role="button">
+                                                    <a class="elementor-button elementor-size-sm button-blue"
+                                                        role="button">
                                                         <span class="elementor-button-content-wrapper">
                                                             <span class="elementor-button-icon">
                                                                 <svg aria-hidden="true"
@@ -4217,6 +4245,37 @@
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
         data-cf-beacon='{"version":"2024.11.0","token":"bbcd4717a7f84d889e74cb71e0b8d1d4","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
         crossorigin="anonymous"></script>
+    <script>
+        let slideIndex = 0;
+        // Panggil fungsi ini untuk memulai slideshow
+        showAutoSlides();
+
+        function showAutoSlides() {
+            let i;
+            // Ambil semua elemen dengan class 'auto-slide'
+            let slides = document.getElementsByClassName("auto-slide");
+
+            // Sembunyikan semua slide
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            // Pindah ke slide berikutnya
+            slideIndex++;
+
+            // Kembali ke slide 1 jika sudah melewati batas
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+
+            // Tampilkan slide yang sekarang (slideIndex-1 karena array mulai dari 0)
+            slides[slideIndex - 1].style.display = "block";
+
+            // Panggil fungsi ini lagi setelah 4 detik (4000 milidetik)
+            // Ubah angka ini untuk mengubah kecepatan bergantian slide
+            setTimeout(showAutoSlides, 2000);
+        }
+    </script>
 </body>
 
 </html>
