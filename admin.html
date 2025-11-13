@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pengantin | Admin</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* 🌸 Date Filter Box */
+        .date-filter-box {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 18px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin: 20px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .date-filter-box h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 14px;
+        }
+
+        .date-input {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date-input label {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 4px;
+        }
+
+        .date-input input[type="date"] {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .date-input input[type="date"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+        }
+
+        /* 🌈 Tombol */
+        .btn-apply,
+        .btn-reset {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-apply {
+            background: linear-gradient(135deg, #007bff, #0056d2);
+            color: #fff;
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-reset {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-reset:hover {
+            background: #d6d6d6;
+            transform: translateY(-2px);
+        }
+
+        /* ✨ Animasi Fade & Slide */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* ======================================================= */
+        /* ADMIN CSS OVERRIDES - Memastikan Tombol Konsisten */
+        /* ======================================================= */
+
+        /* WARNA UNTUK BADGE (Ambil dari Guest CSS Anda) */
+        .badge-konfirmasi {
+            font-size: 10px;
+            font-weight: bold;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-left: 10px;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .hadir {
+            background-color: #28a745;
+        }
+
+        .masih_ragu {
+            background-color: #ffc107;
+        }
+
+        .tidak_hadir {
+            background-color: #dc3545;
+        }
+
+        .tidak_terkonfirmasi {
+            background-color: #6c757d;
+        }
+
+        /* OVERRIDE GAYA TOMBOL DI ADMIN */
+        .ucapan-footer .btn-action {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s;
+            margin-right: 5px;
+        }
+
+        /* Tombol Jawab Resmi (Menggantikan Balas) */
+        .ucapan-footer .btn-reply {
+            background-color: #17a2b8;
+            /* Warna Biru */
+            color: white;
+        }
+
+        /* Tombol Hapus (Tambahan Admin) */
+        .ucapan-footer .btn-delete {
+            background-color: #dc3545;
+            /* Warna Merah */
+            color: white;
+            margin-left: 10px;
+        }
+
+        /* Tombol Like (Statis) */
+        .ucapan-footer .btn-like.liked {
+            color: #333;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            cursor: default !important;
+        }
+
+        /* Gaya Form Balasan Resmi */
+        .reply-form-official h4 {
+            color: #17a2b8;
+        }
+
+        .reply-form-official textarea {
+            border-color: #17a2b8;
+        }
+
+        .reply-form-official button {
+            background-color: #17a2b8;
+        }
+
+        .ucapan-separator {
+            /* Membuat garis pembatas antar ucapan utama */
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right,
+                    rgba(0, 0, 0, 0),
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0));
+            margin: 25px 0 25px 0;
+            /* Jarak atas dan bawah */
+        }
+
+        /* ======================================================= */
+        /* ADMIN CSS OVERRIDES - Memastikan Tombol Konsisten */
+        /* ======================================================= */
+
+        /* WARNA UNTUK BADGE (Ambil dari Guest CSS Anda) */
+        .badge-konfirmasi {
+            font-size: 10px;
+            font-weight: bold;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-left: 10px;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .hadir {
+            background-color: #28a745;
+        }
+
+        .masih_ragu {
+            background-color: #ffc107;
+        }
+
+        .tidak_hadir {
+            background-color: #dc3545;
+        }
+
+        .tidak_terkonfirmasi {
+            background-color: #6c757d;
+        }
+
+        /* OVERRIDE GAYA TOMBOL DI ADMIN */
+        .ucapan-footer .btn-action {
+            /* Gaya Dasar Tombol Guest - Sesuaikan jika CSS Guest Anda berbeda */
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s;
+            margin-right: 5px;
+        }
+
+        /* Tombol Jawab Resmi (Menggantikan Balas) */
+        .ucapan-footer .btn-reply {
+            background-color: #17a2b8;
+            /* Warna Biru */
+            color: white;
+        }
+
+        /* Tombol Hapus (Tambahan Admin) */
+        .ucapan-footer .btn-delete {
+            background-color: #dc3545;
+            /* Warna Merah */
+            color: white;
+            margin-left: 10px;
+            /* Jarak agar terpisah dari tombol lain */
+        }
+
+        /* Tombol Like (Statis) */
+        .ucapan-footer .btn-like.liked {
+            color: #333;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            /* Hilangkan efek hover karena disabled */
+            cursor: default !important;
+        }
+
+        /* Gaya Form Balasan Resmi */
+        .reply-form-official h4 {
+            color: #17a2b8;
+            /* Warna Info/Biru */
+        }
+
+        .reply-form-official textarea {
+            border-color: #17a2b8;
+        }
+
+        .reply-form-official button {
+            background-color: #17a2b8;
+        }
+
+        /* ======================================================= */
+        /* BASE & TYPOGRAPHY */
+        /* ======================================================= */
+        :root {
+            --primary-color: #5cb85c;
+            /* Hijau */
+            --danger-color: #d9534f;
+            /* Merah */
+            --info-color: #007bff;
+            /* Biru */
+            --bg-light: #f8f9fa;
+            --bg-card: #ffffff;
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            padding: 15px;
+            /* Lebih kecil untuk mobile */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ======================================================= */
+        /* HEADER & NAVIGATION */
+        /* ======================================================= */
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            /* Kecilkan untuk mobile */
+        }
+
+        .header button {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        /* ======================================================= */
+        /* STATISTIK GRID (Mobile-First) */
+        /* ======================================================= */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            /* Responsif */
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-light);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            margin-top: 0;
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* Stat Colors */
+        .stat-hadir {
+            color: var(--primary-color);
+        }
+
+        .stat-ragu {
+            color: #f0ad4e;
+        }
+
+        .stat-tidak {
+            color: var(--danger-color);
+        }
+
+        .stat-total {
+            color: var(--info-color);
+        }
+
+        /* ======================================================= */
+        /* MODERASI SECTION */
+        /* ======================================================= */
+        .moderation-section {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .moderation-section h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .export-button {
+            width: 100%;
+            /* Full width di mobile */
+            padding: 12px;
+            background-color: var(--info-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        /* ======================================================= */
+        /* UCAPAN LIST (Tampilan Bersarang) */
+        /* ======================================================= */
+        .ucapan-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ucapan-item {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: var(--bg-card);
+            transition: transform 0.2s;
+        }
+
+        .ucapan-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-ucapan {
+            border-color: #ccc;
+        }
+
+        .reply-item {
+            background-color: #e6f7ff;
+            /* Warna terang untuk balasan */
+            border-left: 5px solid var(--info-color);
+        }
+
+        /* Indentasi pada balasan yang dirender rekursif */
+        .ucapan-item[style*="margin-left: 40px"] {
+            margin-top: 10px;
+        }
+
+        .ucapan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .ucapan-header span:first-child {
+            color: #333;
+        }
+
+        .ucapan-body {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            word-wrap: break-word;
+            /* Penting untuk mobile */
+        }
+
+        .ucapan-actions {
+            font-size: 0.75rem;
+            /* Kecilkan untuk mobile */
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            /* Tumpuk di mobile */
+            gap: 5px;
+            padding-top: 5px;
+            border-top: 1px dashed #eee;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .action-buttons button {
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            flex-grow: 1;
+        }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-reply-admin {
+            background-color: var(--info-color);
+            color: white;
+            border: none;
+        }
+
+        /* Form Balasan Resmi */
+        .reply-form-official {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid var(--info-color);
+            margin-top: 10px;
+        }
+
+        .reply-form-official textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            min-height: 80px;
+        }
+
+        .reply-form-official button {
+            background-color: var(--info-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Desktop Optimization */
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .container {
+                padding: 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 20px;
+            }
+
+            .stat-card p {
+                font-size: 32px;
+            }
+
+            .ucapan-actions {
+                flex-direction: row;
+                font-size: 0.85rem;
+            }
+
+            .action-buttons {
+                margin-top: 0;
+                flex-grow: 0;
+            }
+
+            .action-buttons button {
+                flex-grow: unset;
+            }
+
+            .export-button {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="header">
+        <h1>Dashboard Pengantin 👰🤵</h1>
+        <button onclick="handleLogout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+
+    <div class="container">
+        <section class="stats-grid" id="stats-area">
+            <div class="stat-card">
+                <h3>Total Ucapan</h3>
+                <p id="stat-total" class="stat-total">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Hadir (RSVP)</h3>
+                <p id="stat-hadir" class="stat-hadir">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Masih Ragu</h3>
+                <p id="stat-ragu" class="stat-ragu">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Tidak Hadir</h3>
+                <p id="stat-tidak" class="stat-tidak">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Suka (Likes)</h3>
+                <p id="stat-likes" class="stat-hadir">0</p>
+            </div>
+        </section>
+
+        <!-- 📅 Filter Rentang Tanggal (Desain Baru) -->
+        <div class="date-filter-box">
+            <h3><i class="fas fa-calendar-alt"></i> Filter Rentang Tanggal</h3>
+            <div class="date-filter-controls">
+                <div class="date-input">
+                    <label for="startDate">Dari</label>
+                    <input type="date" id="startDate">
+                </div>
+                <div class="date-input">
+                    <label for="endDate">Sampai</label>
+                    <input type="date" id="endDate">
+                </div>
+                <button id="filterDateBtn" class="btn-apply">Terapkan</button>
+                <button id="resetDateBtn" class="btn-reset">Reset</button>
+            </div>
+        </div>
+
+
+        <section class="moderation-section">
+            <h2><i class="fas fa-comments"></i> Moderasi Semua Ucapan & Balasan</h2>
+            <button onclick="exportDataToCSV()" class="export-button">
+                <i class="fas fa-download"></i> Ekspor Semua Data ke CSV
+            </button>
+
+            <!-- 🔍 Form Pencarian & Filter -->
+            <div class="filter-bar" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                <input type="text" id="searchInput" placeholder="Cari nama atau isi ucapan..."
+                    style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                <select id="statusFilter" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <option value="">Semua Status</option>
+                    <option value="hadir">Hadir</option>
+                    <option value="masih ragu">Masih Ragu</option>
+                    <option value="tidak hadir">Tidak Hadir</option>
+                    <option value="belum jawab">Belum Jawab</option>
+                </select>
+            </div>
+
+
+            <section class="ucapan-section">
+                <div id="ucapan-admin-list" class="ucapan-list-container">
+                    <p>Memeriksa otentikasi...</p>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        // Variabel global untuk menyimpan semua data agar bisa dikelompokkan
+        let allUcapanData = [];
+
+        // =======================================================
+        // 1. KONFIGURASI SUPABASE & VARIABEL GLOBAL
+        // =======================================================
+        // ⚠️ Catatan: Jika Anda masih mendapat error 'Akses Ditolak', 
+        // pastikan kunci ini valid atau cek pengaturan RLS di Supabase!
+        const supabaseUrl = "https://tcqgtfqbnndsewjpdyjs.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjcWd0ZnFibm5kc2V3anBkeWpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTI2NDYsImV4cCI6MjA3NzQ4ODY0Nn0.RP-MRyU6dy1PkZLkj3ZpAhfz6rsPO4k0heX0Tm5JlqY";
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        const LOGIN_PAGE_URL = "login.html";
+        let OFFICIAL_NAME = "Admin";
+
+        // ⭐️ KUNCI RAHASIA GLOBAL ⭐️
+        const ADMIN_SECRET_KEY = "k0de_raha$ia_anda_yang_sanga7_panjang_dan_unik";
+
+
+        // =======================================================
+        // 2. FUNGSI UTILITY (timeAgo)
+        // =======================================================
+
+        function timeAgo(dateString) {
+            const now = new Date();
+            const past = new Date(dateString);
+            const seconds = Math.floor((now - past) / 1000);
+
+            let interval = Math.floor(seconds / 31536000);
+            if (interval >= 1) return interval + " tahun lalu";
+            interval = Math.floor(seconds / 2592000);
+            if (interval >= 1) return interval + " bulan lalu";
+            interval = Math.floor(seconds / 86400);
+            if (interval >= 1) return interval + " hari lalu";
+            interval = Math.floor(seconds / 3600);
+            if (interval >= 1) return interval + " jam lalu";
+            interval = Math.floor(seconds / 60);
+            if (interval >= 1) return interval + " menit lalu";
+            if (seconds < 10) return "baru saja";
+            return Math.floor(seconds) + " detik lalu";
+        }
+
+        // =======================================================
+        // 3. FUNGSI PENGAMANAN & LOGOUT (Tidak Berubah)
+        // =======================================================
+        async function handleLogout() {
+            const { error } = await supabase.auth.signOut();
+            if (error) {
+                console.error("Gagal logout:", error.message);
+                alert("Gagal logout. Silakan coba lagi.");
+                return;
+            }
+            window.location.href = LOGIN_PAGE_URL;
+        }
+
+        async function checkAuthAndLoadDashboard() {
+            // ... (Kode autentikasi tidak berubah)
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (!user) {
+                alert("Akses ditolak. Silakan login.");
+                window.location.href = LOGIN_PAGE_URL;
+                return;
+            }
+
+            const nameFromMetadata = user.user_metadata?.display_name;
+            OFFICIAL_NAME = nameFromMetadata || user.email.split('@')[0];
+
+            const header = document.querySelector('.header h1');
+            if (header) {
+                header.textContent = `Dashboard ${OFFICIAL_NAME}`;
+            }
+
+            loadAdminDashboard();
+        }
+
+
+        // =======================================================
+        // 4. FUNGSI UTAMA DASHBOARD & STATISTIK (Tidak Berubah)
+        // =======================================================
+        async function loadAdminDashboard() {
+            await loadStatistics();
+            await loadUcapanAdminList();
+        }
+
+        async function loadStatistics() {
+            // ... (Kode statistik tidak berubah)
+            const { data, error } = await supabase
+                .from('ucapan')
+                .select('konfirmasi')
+                .is('parent_id', null);
+
+            if (error) {
+                console.error("Gagal memuat statistik:", error);
+                // Handling jika error akses data statistik
+                return;
+            }
+
+            let hadir = 0;
+            let ragu = 0;
+            let tidakHadir = 0;
+            const total = data.length;
+
+            data.forEach(d => {
+                const status = d.konfirmasi ? d.konfirmasi.toLowerCase() : '';
+                if (status === 'hadir') {
+                    hadir++;
+                } else if (status === 'masih ragu') {
+                    ragu++;
+                } else if (status === 'tidak hadir') {
+                    tidakHadir++;
+                }
+            });
+
+            const elTotal = document.getElementById('stat-total');
+            const elHadir = document.getElementById('stat-hadir');
+            const elRagu = document.getElementById('stat-ragu');
+            const elTidak = document.getElementById('stat-tidak');
+            const elLikes = document.getElementById('stat-likes');
+
+            if (elTotal) elTotal.textContent = total;
+            if (elHadir) elHadir.textContent = hadir;
+            if (elRagu) elRagu.textContent = ragu;
+            if (elTidak) elTidak.textContent = tidakHadir;
+
+            const { data: likesData, error: likesError } = await supabase
+                .from('ucapan')
+                .select('likes');
+
+            if (!likesError && likesData && elLikes) {
+                const totalLikes = likesData.reduce((sum, item) => sum + (item.likes || 0), 0);
+                elLikes.textContent = totalLikes;
+            }
+        }
+
+        // =======================================================
+        // 📊 Filter Statistik Dinamis (rentang tanggal) - Tambahan
+        // =======================================================
+        function updateStatisticsDisplay(dataSubset) {
+            // dataSubset diharapkan array ucapan (bisa semua atau terfilter)
+            const utama = dataSubset.filter(d => d.parent_id === null);
+            const total = utama.length;
+            let hadir = 0, ragu = 0, tidakHadir = 0, totalLikes = 0;
+
+            utama.forEach(d => {
+                const status = (d.konfirmasi || '').toLowerCase();
+                if (status === 'hadir') hadir++;
+                else if (status === 'masih ragu') ragu++;
+                else if (status === 'tidak hadir') tidakHadir++;
+                totalLikes += Number(d.likes || 0);
+            });
+
+            const elTotal = document.getElementById('stat-total');
+            const elHadir = document.getElementById('stat-hadir');
+            const elRagu = document.getElementById('stat-ragu');
+            const elTidak = document.getElementById('stat-tidak');
+            const elLikes = document.getElementById('stat-likes');
+
+            if (elTotal) elTotal.textContent = total;
+            if (elHadir) elHadir.textContent = hadir;
+            if (elRagu) elRagu.textContent = ragu;
+            if (elTidak) elTidak.textContent = tidakHadir;
+            if (elLikes) elLikes.textContent = totalLikes;
+        }
+
+        function renderFilteredUcapanList(filteredData) {
+            const container = document.getElementById('ucapan-admin-list');
+            if (!container) return;
+            const utama = filteredData.filter(d => d.parent_id === null)
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            let htmlBaru = '';
+            utama.forEach((d, index) => {
+                htmlBaru += generateAdminUcapanHtml(d, 0);
+                if (index < utama.length - 1) htmlBaru += '<hr class="ucapan-separator">';
+            });
+            container.innerHTML = htmlBaru.length > 0 ? htmlBaru : '<p>Tidak ada ucapan dalam rentang tanggal tersebut.</p>';
+        }
+
+        function applyStatDateFilter() {
+            const startVal = document.getElementById('startDate').value;
+            const endVal = document.getElementById('endDate').value;
+            const labelRange = document.getElementById('activeStatRange');
+
+            if (!startVal || !endVal) {
+                alert('Pilih tanggal mulai dan sampai terlebih dahulu.');
+                return;
+            }
+
+            const startDate = new Date(startVal);
+            // set end ke akhir hari agar inklusif
+            const endDate = new Date(endVal);
+            endDate.setHours(23, 59, 59, 999);
+
+            const filtered = allUcapanData.filter(item => {
+                const created = new Date(item.created_at);
+                return created >= startDate && created <= endDate;
+            });
+
+            updateStatisticsDisplay(filtered);
+            renderFilteredUcapanList(filtered);
+
+            if (labelRange) labelRange.textContent = `Menampilkan: ${startVal} → ${endVal}`;
+        }
+
+        function resetStatDateFilter() {
+            document.getElementById('startDate').value = '';
+            document.getElementById('endDate').value = '';
+            const labelRange = document.getElementById('activeStatRange');
+            if (labelRange) labelRange.textContent = '';
+            // gunakan data yang telah diambil (allUcapanData)
+            updateStatisticsDisplay(allUcapanData);
+            renderFilteredUcapanList(allUcapanData);
+        }
+
+        // Pasang event listener setelah DOM siap
+        document.addEventListener('DOMContentLoaded', () => {
+            const applyBtn = document.getElementById('filterDateBtn');
+            const resetBtn = document.getElementById('resetDateBtn');
+
+            if (applyBtn) applyBtn.addEventListener('click', applyStatDateFilter);
+            if (resetBtn) resetBtn.addEventListener('click', resetStatDateFilter);
+        });
+
+
+
+
+        // =======================================================
+        // 5. FUNGSI UCAPAN BERSARANG DENGAN INDENTASI DINAMIS
+        // =======================================================
+
+        function generateAdminUcapanHtml(d, depth = 0) {
+
+            // --- Bagian 1: Penentuan Data dan Style ---
+            const isOfficialReply = d.is_admin_reply;
+            const parentId = d.id;
+            const isMainComment = depth === 0;
+
+            // Logika Mahkota
+            const senderNameHtml = isOfficialReply
+                ? `<span class="official-name"> ${d.nama}&nbsp;&nbsp;&nbsp;<i class="fas fa-crown"></i></span>`
+                : `<span class="ucapan-nama">${d.nama}</span>`;
+
+            // Badge Konfirmasi (Hanya untuk ucapan utama/depth 0)
+            const konfirmasiText = d.konfirmasi || 'Belum Jawab';
+            const konfirmasiClass = konfirmasiText.toLowerCase().replace(/ /g, '_');
+            const konfirmasiBadgeHtml = isMainComment && d.konfirmasi
+                ? `<span class="badge-konfirmasi ${konfirmasiClass}">${d.konfirmasi}</span>`
+                : '';
+
+            const waktuTeks = timeAgo(d.created_at);
+            const itemClass = depth > 0 ? "ucapan-item ucapan-reply" : "ucapan-item";
+
+            // Logic Indentasi Dinamis
+            let dynamicStyle = '';
+            if (depth > 0) {
+                const marginLeft = depth * 40; // Indentasi 40px per level
+                dynamicStyle = `margin-left: ${marginLeft}px; border-left: 3px solid #eee; padding-left: 15px;`;
+            }
+
+            // --- Bagian 2: Tombol Aksi (Admin Functionality) ---
+
+            // A. Tombol Jawab Resmi: Hanya tampil di ucapan utama (depth 0)
+            const replyButtonHtml = isMainComment
+                ? `<button class="btn-action btn-reply" onclick="tampilkanFormBalasanResmi(${parentId}, '${d.nama.replace(/'/g, "\\'")}')">Jawab Resmi</button>`
+                : '';
+
+            // B. Tombol Like (Statis)
+            const likeButtonHtml = `
+            <button class="btn-action btn-like liked" disabled style="cursor: default;">
+                <span style="color: red;">❤️</span> 
+                (<span id="like-count-${d.id}">${d.likes || 0}</span>)
+            </button>
+        `;
+
+            // C. Tombol Hapus (Tambahan Admin)
+            const deleteButtonHtml = `
+            <button class="btn-action btn-delete" onclick="deleteUcapan(${d.id})">
+                <i class="fas fa-trash-alt"></i> Hapus
+            </button>
+        `;
+
+            // D. Gabungkan semua tombol di footer
+            const ucapanFooterContent = `
+            ${replyButtonHtml}
+            ${likeButtonHtml}
+            ${deleteButtonHtml} 
+        `;
+
+            // --- Bagian 3: Balasan Bersarang (REKURSIF) ---
+            let repliesHtml = '';
+            const replies = allUcapanData.filter(r => r.parent_id === d.id).sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+
+            if (replies.length > 0) {
+                repliesHtml = `<div class="ucapan-replies-container">` +
+                    // REKURSIF: Naikkan level kedalaman
+                    replies.map(r => generateAdminUcapanHtml(r, depth + 1)).join('') +
+                    `</div>`;
+            }
+
+            // --- Bagian 4: Hasil Akhir (Struktur Identik Guest) ---
+            return `
+            <div class="${itemClass}" data-id="${d.id}" style="${dynamicStyle}">
+                <div class="ucapan-header">
+                    <div class="ucapan-nama-group">
+                        ${senderNameHtml}
+                        ${konfirmasiBadgeHtml} 
+                    </div>
+                    <span class="ucapan-waktu" title="Waktu dibuat: ${new Date(d.created_at).toLocaleString('id-ID')}">${waktuTeks}</span>
+                </div>
+                
+                <div class="ucapan-text">
+                    ${d.ucapan}
+                </div>
+                
+                <div class="ucapan-footer">
+                    ${ucapanFooterContent}
+                </div>
+
+                <div id="reply-form-placeholder-${parentId}" class="reply-form-placeholder"></div>
+            </div>
+            ${repliesHtml} 
+        `;
+        }
+
+        // 🚨 FUNGSI INI MENAMBAHKAN PEMBATAS 🚨
+        async function loadUcapanAdminList() {
+            const container = document.getElementById('ucapan-admin-list');
+            container.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Memuat semua ucapan...</p>';
+
+            const { data, error } = await supabase
+                .from('ucapan')
+                .select('*')
+                .order('id', { ascending: false });
+
+            if (error) {
+                console.error("Gagal memuat ucapan:", error);
+                // Ini bisa jadi penyebab error "Akses Ditolak" jika RLS aktif.
+                container.innerHTML = '<p style="color: #dc3545;"><i class="fas fa-exclamation-triangle"></i> Gagal memuat data ucapan. Cek Supabase Key atau RLS Anda.</p>';
+                return;
+            }
+
+            allUcapanData = data;
+
+            // Pisahkan Ucapan Utama (parent_id is null)
+            const komentarUtama = data.filter(d => d.parent_id === null);
+
+            let htmlBaru = '';
+
+            // ⭐️ ITERASI DAN TAMBAH PEMBATAS ⭐️
+            komentarUtama.forEach((d, index) => {
+                htmlBaru += generateAdminUcapanHtml(d, 0);
+
+                // Tambahkan Pembatas, KECUALI untuk ucapan terakhir
+                if (index < komentarUtama.length - 1) {
+                    htmlBaru += '<hr class="ucapan-separator">';
+                }
+            });
+
+            container.innerHTML = htmlBaru.length > 0 ? htmlBaru : '<p>Belum ada ucapan.</p>';
+        }
+
+        // =======================================================
+        // 🔍 5.1 FITUR PENCARIAN & FILTER UCAPAN
+        // =======================================================
+        document.addEventListener('input', async (e) => {
+            if (e.target.id === 'searchInput' || e.target.id === 'statusFilter') {
+                filterAndRenderUcapan();
+            }
+        });
+
+        function filterAndRenderUcapan() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase();
+            const status = document.getElementById('statusFilter').value.toLowerCase();
+
+            // Filter hanya komentar utama (tanpa parent_id)
+            const filtered = allUcapanData.filter(d => {
+                const isMain = d.parent_id === null;
+                const matchKeyword = d.nama.toLowerCase().includes(keyword) || d.ucapan.toLowerCase().includes(keyword);
+                const matchStatus = !status || (d.konfirmasi && d.konfirmasi.toLowerCase() === status) ||
+                    (status === 'belum jawab' && !d.konfirmasi);
+                return isMain && matchKeyword && matchStatus;
+            });
+
+            const container = document.getElementById('ucapan-admin-list');
+            let htmlBaru = '';
+
+            filtered.forEach((d, index) => {
+                htmlBaru += generateAdminUcapanHtml(d, 0);
+                if (index < filtered.length - 1) htmlBaru += '<hr class="ucapan-separator">';
+            });
+
+            container.innerHTML = htmlBaru.length > 0 ? htmlBaru : '<p>Tidak ada ucapan yang cocok dengan filter.</p>';
+        }
+
+
+        // =======================================================
+        // 6. FUNGSI MODERASI & BALASAN RESMI (Tidak Berubah)
+        // =======================================================
+
+        async function deleteUcapan(id) {
+            if (!confirm(`Apakah Anda yakin ingin menghapus ucapan/balasan dengan ID ${id}? Aksi ini tidak dapat dibatalkan.`)) {
+                return;
+            }
+
+            const { error } = await supabase
+                .from('ucapan')
+                .delete()
+                .eq('id', id);
+
+            if (error) {
+                alert("Gagal menghapus data: " + error.message);
+                console.error("Delete error:", error);
+            } else {
+                alert("Ucapan berhasil dihapus!");
+                loadAdminDashboard();
+            }
+        }
+
+        function tampilkanFormBalasanResmi(parentId, parentName) {
+            const placeholder = document.getElementById(`reply-form-placeholder-${parentId}`);
+
+            document.querySelectorAll('.reply-form-placeholder').forEach(p => {
+                if (p.id !== placeholder.id) p.innerHTML = '';
+            });
+
+            if (placeholder.querySelector('form')) {
+                placeholder.innerHTML = '';
+                return;
+            }
+
+            const formHtml = `
+            <form class="reply-form reply-form-official" onsubmit="kirimBalasanResmi(event, ${parentId})">
+                <h4 style="margin: 5px 0; font-size: 14px; color: var(--info-color);"><i class="fas fa-user-shield"></i> Jawab Resmi untuk ${parentName}</h4>
+                <input type="hidden" name="admin_secret" value="${ADMIN_SECRET_KEY}">
+                <textarea name="balasan" placeholder="Tulis balasan resmi..." required></textarea>
+
+                <button type="submit"><i class="fas fa-paper-plane"></i> Kirim Balasan Resmi</button>
+            </form>
+        `;
+            placeholder.innerHTML = formHtml;
+            placeholder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        async function kirimBalasanResmi(event, parentId) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            const ucapan = form.querySelector('[name="balasan"]').value;
+            const adminSecretInput = form.querySelector('[name="admin_secret"]');
+
+            const isOfficial = adminSecretInput && adminSecretInput.value === ADMIN_SECRET_KEY;
+            const officialNameUsed = OFFICIAL_NAME;
+
+            if (!isOfficial) {
+                alert("Verifikasi kunci rahasia gagal. Harap hubungi developer.");
+                return;
+            }
+
+            if (!officialNameUsed || officialNameUsed === "Admin") {
+                alert("Nama pengirim resmi belum teridentifikasi. Pastikan Anda sudah login dengan benar.");
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+
+            const { error } = await supabase
+                .from("ucapan")
+                .insert([{
+                    nama: officialNameUsed,
+                    ucapan: ucapan,
+                    konfirmasi: null,
+                    parent_id: parentId,
+                    is_admin_reply: true
+                }]);
+
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Balasan Resmi';
+
+            if (error) {
+                alert("Gagal mengirim balasan: " + error.message);
+                console.error("Gagal mengirim data balasan:", error);
+                submitButton.innerHTML = '<i class="fas fa-redo"></i> Coba Lagi';
+                return;
+            }
+
+            alert("Balasan berhasil dikirim! Halaman dimuat ulang untuk menampilkan balasan.");
+
+            document.getElementById(`reply-form-placeholder-${parentId}`).innerHTML = '';
+            loadAdminDashboard();
+        }
+
+        // =======================================================
+        // 7. EKSPOR DATA CSV (Tidak Berubah)
+        // =======================================================
+        async function exportDataToCSV() {
+            const { data, error } = await supabase
+                .from('ucapan')
+                .select('*')
+                .order('id', { ascending: false });
+
+            if (error) {
+                alert('Gagal mengambil data untuk ekspor: ' + error.message);
+                return;
+            }
+
+            const headers = Object.keys(data[0]);
+            const csvRows = [];
+            csvRows.push(headers.join(','));
+
+            for (const row of data) {
+                const values = headers.map(header => {
+                    const value = row[header];
+                    const stringifiedValue = (value === null || value === undefined) ? '' : String(value).replace(/"/g, '""');
+                    return `"${stringifiedValue}"`;
+                });
+                csvRows.push(values.join(','));
+            }
+
+            const csvString = csvRows.join('\n');
+            const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `ucapan_admin_export_${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert("Data berhasil diekspor ke CSV!");
+        }
+
+
+        // =======================================================
+        // 8. INISIASI (Tidak Berubah)
+        // =======================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            checkAuthAndLoadDashboard();
+        });
+
+    </script>
+
+</body>
+
+</html>

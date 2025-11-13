@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Pengantin - Admin</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Penting agar padding tidak melebarkan input */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50; /* Warna Hijau Khas Admin */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover:not(:disabled) {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #a5d6a7;
+            cursor: not-allowed;
+        }
+        #error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Akses Pengantin 💍</h2>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email Admin" required>
+            <input type="password" id="password" placeholder="Kata Sandi" required>
+            <button type="submit" id="login-button">Masuk</button>
+            <p id="error-message"></p>
+        </form>
+    </div>
+
+    <script>
+        // =======================================================
+        // 1. KONFIGURASI SUPABASE (Gunakan Kunci Anda!)
+        // =======================================================
+        const supabaseUrl = "https://tcqgtfqbnndsewjpdyjs.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjcWd0ZnFibm5kc2V3anBkeWpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTI2NDYsImV4cCI6MjA3NzQ4ODY0Nn0.RP-MRyU6dy1PkZLkj3ZpAhfz6rsPO4k0heX0Tm5JlqY";
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        const ADMIN_PAGE_URL = "admin.html"; // Ganti dengan nama file admin Anda (misalnya: 'dashboard.html')
+
+        // =======================================================
+        // 2. FUNGSI UTAMA LOGIN
+        // =======================================================
+        async function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const button = document.getElementById('login-button');
+            const errorMessage = document.getElementById('error-message');
+
+            errorMessage.textContent = '';
+            button.disabled = true;
+            button.textContent = "Memproses...";
+
+            // Panggil API Supabase untuk otentikasi
+            const { error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+            });
+
+            if (error) {
+                console.error("Gagal login:", error.message);
+                errorMessage.textContent = "Gagal masuk: Email atau Kata Sandi salah.";
+                button.disabled = false;
+                button.textContent = "Masuk";
+                return;
+            }
+
+            // Jika berhasil, arahkan ke halaman admin
+            window.location.href = ADMIN_PAGE_URL;
+        }
+
+        // =======================================================
+        // 3. INISIASI
+        // =======================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById('login-form');
+            form.addEventListener('submit', handleLogin);
+        });
+    </script>
+</body>
+</html>

@@ -8,8 +8,450 @@
             max-width: 100% !important;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <meta name='robots' content='noindex, nofollow' />
     <style>
+        /* ======================================================= */
+        /* 🎨 CLASS BARU: .invited-section-overhaul 🎨 */
+        /* ======================================================= */
+
+        /* Asumsi Warna Dasar */
+        :root {
+            --primary-color-blue: #1a73e8;
+            /* Bluetext */
+            --secondary-color-light-blue: #2196f3;
+            /* Bluetextmuda */
+            --text-dark: #333;
+            --text-muted: #666;
+            --card-bg: #ffffff;
+            --card-shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ------------------ CONTAINER UTAMA ------------------ */
+        .invited-section-overhaul {
+            padding: 40px 20px;
+            background-color: #f8f8f8;
+            /* Background lebih terang untuk menonjolkan kartu */
+            text-align: center;
+            overflow: hidden;
+            /* Penting untuk animasi masuk/keluar */
+        }
+
+        /* ------------------ TYPOGRAPHY & HEADER ------------------ */
+        .invited-section-overhaul .main-heading {
+            font-size: 2.2em;
+            font-weight: 800;
+            color: var(--primary-color-blue);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .invited-section-overhaul .sub-heading {
+            font-size: 1.8em;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        /* ------------------ GUEST CARD STYLING ------------------ */
+        .invited-list-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .invited-card {
+            /* Desain Card */
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px var(--card-shadow);
+            /* Shadow yang halus */
+            border-left: 5px solid var(--secondary-color-light-blue);
+            /* Garis dekorasi */
+
+            /* Default state for animation */
+            opacity: 0;
+            transform: translateY(60px) scale(0.8);
+            transition: all 0.7s ease-out;
+        }
+
+        .invited-card h4 {
+            margin: 0;
+            font-size: 1.1em;
+            line-height: 1.3;
+            color: var(--secondary-color-light-blue);
+            font-weight: 700;
+        }
+
+        .invited-card p {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            margin: 5px 0 0 0;
+        }
+
+        /* ------------------ FAMILY LIST ------------------ */
+        .family-list-container {
+            padding-top: 30px;
+        }
+
+        .family-list-container h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--primary-color-blue);
+            margin-bottom: 20px;
+        }
+
+        .family-list-container h4 {
+            font-size: 1em;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #ddd;
+            width: 30%;
+            margin: 30px auto;
+        }
+
+        /* ------------------ KEYFRAME ANIMATION "LUCU" ------------------ */
+
+        /* ANIMASI MASUK: Bounce In Up */
+        @keyframes bouncyCardEntry {
+            0% {
+                opacity: 0;
+                transform: translateY(60px) scale(0.8);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateY(-5px) scale(1.05);
+                /* Overshoot (Efek Memantul) */
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                /* Settle */
+                opacity: 1;
+            }
+        }
+
+        /* ANIMASI KELUAR: Fade Out Down (Sederhana) */
+        @keyframes fadeOutDown {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(60px) scale(0.8);
+            }
+        }
+
+        /* CLASS ANIMASI */
+        .invited-card.animate-bounce-in {
+            animation: bouncyCardEntry 0.8s cubic-bezier(0.2, 0.8, 0.4, 1.2) forwards;
+            /* Curva bouncy yang lebih baik */
+        }
+
+        .invited-card.animate-fade-out {
+            animation: fadeOutDown 0.4s ease-in forwards;
+        }
+    </style>
+    <style>
+        /* Styling untuk ikon love di dalam tombol */
+        .btn-like span {
+            transition: color 0.1s;
+            /* Animasi lembut saat berubah warna */
+        }
+
+        /* 🤍 Ikon Love Putih/Outline (Belum di-like) */
+        .btn-like #like-icon- {
+            color: inherit;
+            /* Menggunakan warna teks default tombol */
+        }
+
+        /* ❤️ Ikon Love Merah (Sudah di-like) */
+        .btn-like.liked #like-icon- {
+            color: red;
+            /* Warna merah saat sudah di-like */
+        }
+
+        /* ======================================================= */
+        /* 👑 STYLE BADGE PENGANTIN - VERSI BIRU & PUTIH 👑 */
+        /* ======================================================= */
+        .official-name {
+            /* 1. WARNA TEKS JADI PUTIH */
+            color: white;
+
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            /* Jarak antara Nama dan Ikon */
+            margin-right: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+
+            /* 2. LATAR BELAKANG JADI BIRU TUA */
+            background-color: #007bff;
+            /* Biru Primer yang Kuat */
+
+            border: 1px solid #0056b3;
+            /* Border Biru yang sedikit lebih tua */
+            font-size: 0.95em;
+            line-height: 1;
+        }
+
+        /* Style Ikon Crown (Mahkota) */
+        .official-name i.fa-crown {
+            color: #ffeb3b;
+            /* Emas/Kuning Terang agar kontras di latar biru */
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+
+        /* ======================================================= */
+        /* ======================================================= */
+        /* STYLE BALASAN BERSARANG (NESTED) */
+        /* ======================================================= */
+        .ucapan-replies-container {
+            /* Container untuk menampung balasan */
+            margin-top: 10px;
+            padding-left: 20px;
+            /* Jarak indentasi dari kiri */
+            border-left: 2px solid #f0f0f0;
+            /* Garis vertikal di kiri untuk visualisasi */
+        }
+
+        .ucapan-reply {
+            /* Penyesuaian padding untuk item balasan agar lebih ringkas */
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* Balasan tidak perlu border-bottom antar item jika sudah ada garis vertikal */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .ucapan-reply .ucapan-header {
+            /* Header pada balasan lebih kecil */
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .ucapan-reply .ucapan-text {
+            /* Teks balasan lebih kecil */
+            font-size: 13px;
+            border-bottom: none;
+            /* Hilangkan garis putus-putus di balasan */
+            margin-bottom: 5px;
+            padding-bottom: 0;
+        }
+
+        .ucapan-reply .ucapan-footer {
+            padding-top: 0;
+        }
+
+        /* Semuanya di dalam balasan harus sedikit lebih kecil */
+        .ucapan-reply .ucapan-nama {
+            font-size: 14px;
+        }
+
+        .ucapan-reply .badge-konfirmasi {
+            transform: scale(0.9);
+        }
+
+
+
+
+
+        /* ======================================================= */
+        /* STYLE FOOTER DAN TOMBOL AKSI (Outline Style) */
+        /* ======================================================= */
+        .ucapan-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 5px;
+        }
+
+        .btn-action {
+            /* Hapus border lama */
+            border: none;
+
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 5px 12px;
+            /* Padding sedikit dilebarkan agar outline terlihat bagus */
+            border-radius: 20px;
+            /* Buat sudut melengkung/pil */
+            transition: all 0.2s;
+
+            /* PENTING: Latar Belakang Tetap Transparan */
+            background: none;
+        }
+
+        /* Tombol Balas (Reply) - Kiri (Outline Biru) */
+        .btn-reply {
+            color: var(--bgTombolKirim, #1a237e);
+            /* Garis Tepi (Outline) menggunakan warna aksen */
+            border: 1px solid var(--bgTombolKirim, #1a237e);
+        }
+
+        /* Tombol Suka (Like) - Kanan (Outline Merah) */
+        .btn-like {
+            color: #c9302c;
+            /* Warna teks merah */
+            /* Garis Tepi (Outline) menggunakan warna merah */
+            border: 1px solid #c9302c;
+        }
+
+        /* Efek Hover (Saat kursor di atas tombol) */
+        .btn-action:hover {
+            /* Saat di-hover, beri sedikit warna latar belakang transparan */
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Tombol Balas (Reply) - Kiri */
+        .btn-reply {
+            color: var(--bgTombolKirim, #1a237e);
+            /* Warna aksen/biru */
+        }
+
+        /* Tombol Suka (Like) - Kanan */
+        .btn-like {
+            color: #c9302c;
+            /* Warna merah untuk Suka */
+        }
+
+        /* ======================================================= */
+        /* PERBAIKAN LEBAR KOTAK KOMENTAR KESELURUHAN */
+        /* ======================================================= */
+        #cui-box {
+            /* Batasi lebar kontainer utama (seperti yang terlihat di foto) */
+            max-width: 700px;
+            /* Tengahkan kontainer di tengah halaman */
+            margin: 0 auto;
+            /* Padding horizontal di HP */
+            padding: 0 15px;
+        }
+
+
+        /* ======================================================= */
+        /* STYLE UCAPAN INDIVIDUAL (Card Bordered Style) */
+        /* ======================================================= */
+        .ucapan-item {
+            background-color: #ffffff;
+            /* Border yang halus dan sedikit transparan (Mirip di foto) */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            /* Sudut melengkung yang besar */
+            border-radius: 12px;
+            padding: 15px;
+            /* Jarak vertikal antar kartu */
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            /* Bayangan sangat tipis */
+            line-height: 1.5;
+        }
+
+        .ucapan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            /* Jarak antara header dan isi */
+            /* PROPERTI TAMBAHAN UNTUK GARIS PEMISAH */
+            border-bottom: 1px solid #e0e0e0;
+            /* Garis solid tipis */
+            padding-bottom: 8px;
+            /* Jarak antara teks header dan garis */
+            margin-bottom: 8px;
+            /* Jarak antara garis dan teks ucapan */
+        }
+
+        .ucapan-nama-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .ucapan-nama {
+            font-weight: 700;
+            color: var(--teksNamaKomen, #1a237e);
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .ucapan-waktu {
+            font-size: 12px;
+            color: #999;
+            /* Warna abu-abu yang lebih lembut */
+            white-space: nowrap;
+        }
+
+        /* Teks Ucapan (Isi) */
+        .ucapan-text {
+            color: var(--teksKomen, #444);
+            margin-top: 0;
+            padding: 0;
+            font-size: 14px;
+            /* Sedikit lebih kecil agar lebih rapi */
+            font-style: normal;
+            /* PROPERTI TAMBAHAN UNTUK GARIS KEDUA */
+            border-bottom: 1px solid #e0e0e0;
+            /* Garis putus-putus tipis */
+            padding-bottom: 15px;
+            /* Jarak antara teks ucapan dan garis */
+            margin-bottom: 10px;
+            /* Jarak antara garis dan batas bawah kartu */
+        }
+
+        /* Badge Konfirmasi Kehadiran */
+        .badge-konfirmasi {
+            display: inline-block;
+            padding: 3px 8px;
+            /* Sudut melengkung, lebih bulat dari item card */
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: capitalize;
+            /* Huruf pertama kapital (agar lebih natural) */
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        /* Warna badge (menggunakan variabel Anda) */
+        .hadir {
+            background-color: var(--bgHadir, #59664A);
+        }
+
+        .tidak_hadir {
+            background-color: #c9302c;
+        }
+
+        .masih_ragu {
+            background-color: #f0ad4e;
+        }
+
+        /* ... di dalam blok <style> kustom Anda */
+        .cui-wrapper.cui-custom .cui-wrap-form .cui-container-form button.cui-form-btn {
+            border: 1px solid var(--borderTombolKirim);
+            background: var(--bgTombolKirim);
+            color: var(--teksTombolKirim);
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .cui-wrapper.cui-custom .cui-wrap-form .cui-container-form button.cui-form-btn:hover {
+            background: var(--bgTombolKirimSorot);
+            color: var(--teksTombolKirimSorot);
+        }
+
         /* ========================================================= */
         /* KELAS BARU UNTUK TEKS UCAPAN PENUTUP */
         /* ========================================================= */
@@ -214,6 +656,7 @@
     <meta property="og:site_name" content="Undangan Digital Website" />
     <meta property="article:published_time" content="2025-08-08T06:33:06+00:00" />
     <meta property="article:modified_time" content="2025-08-08T10:17:06+00:00" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/1.jpeg" />
     <meta property="og:image:width" content="226" />
     <meta property="og:image:height" content="226" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -711,15 +1154,15 @@
         }
 
         .cui_comment_count_card.cui_card-tidak_hadir {
-            background-color: #d90a11;
+            background-color: #d90a11 !important;
         }
 
         .cui_comment_count_card.cui_card-hadir {
-            background-color: #3D9A62;
+            background-color: #3D9A62 !important;
         }
 
         .cui_comment_count_card.cui_card-masih_ragu {
-            background-color: #d7a916;
+            background-color: #d7a916 !important;
         }
     </style>
     <link rel='stylesheet' id='hello-elementor-css'
@@ -1759,7 +2202,7 @@
             <div class="elementor-container elementor-column-gap-default">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-12ed2746"
                     data-id="12ed2746" data-element_type="column" id="home"
-                    data-settings="{&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1889,&quot;url&quot;:&quot;https://i.pinimg.com/736x/65/46/66/654666002267d8971e5bd143dcf05f7a.jpg&quot;},{&quot;id&quot;:1890,&quot;url&quot;:&quot;https://i.pinimg.com/736x/e5/22/a0/e522a070e648410bd5f6666a8534bc93.jpg&quot;},{&quot;id&quot;:1891,&quot;url&quot;:&quot;https://i.pinimg.com/736x/75/86/48/758648a786dcbd1f0274453241b4ab34.jpg&quot;}],&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_slide_duration&quot;:2000,&quot;background_slideshow_transition_duration&quot;:5000,&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;}">
+                    data-settings="{&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1889,&quot;url&quot;:&quot;3.jpeg&quot;},{&quot;id&quot;:1890,&quot;url&quot;:&quot;4.jpeg&quot;},{&quot;id&quot;:1891,&quot;url&quot;:&quot;1.jpeg&quot;}],&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_slide_duration&quot;:2000,&quot;background_slideshow_transition_duration&quot;:5000,&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;}">
                     <div class="elementor-widget-wrap elementor-element-populated">
                         <div class="elementor-background-overlay"></div>
                         <section
@@ -1977,7 +2420,7 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Abizar Yusrin</h2>
+                                <h2 class="elementor-heading-title elementor-size-default">Abizar Yusrin, S.M</h2>
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-205baa08 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
@@ -2053,9 +2496,9 @@
                             data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <img decoding="async" width="888" height="1182"
-                                    src="https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg"
+                                    src="FPP.jpeg"
                                     class="attachment-full size-full wp-image-1893" alt=""
-                                    srcset="https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg 888w, https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg 225w, https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg 769w, https://i.pinimg.com/736x/6d/2d/b5/6d2db5942418fa070372a27182204f22.jpg 768w"
+                                    srcset="FPP.jpeg 888w, FPP.jpeg 225w, FPP.jpeg 769w, FPP.jpeg 768w"
                                     sizes="(max-width: 888px) 100vw, 888px" />
                             </div>
                         </div>
@@ -2109,9 +2552,9 @@
                             data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <img loading="lazy" decoding="async" width="888" height="1182"
-                                    src="https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg"
+                                    src="FPWF.jpeg"
                                     class="attachment-full size-full wp-image-1892" alt=""
-                                    srcset="https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg 888w, https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg 225w, https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg 769w, https://i.pinimg.com/736x/52/11/5c/52115c2562096df6163e710f8f50c4be.jpg 768w"
+                                    srcset="FPWF.jpeg 888w, FPWF.jpeg 225w, FPWF.jpeg 769w, FPWF.jpeg 768w"
                                     sizes="(max-width: 888px) 100vw, 888px" />
                             </div>
                         </div>
@@ -3067,7 +3510,7 @@
                 </div>
             </div>
         </section>
-        <section
+        <section id="ucapan"
             class="elementor-section elementor-top-section elementor-element elementor-element-343bfc12 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
             data-id="343bfc12" data-element_type="section"
             data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -3104,24 +3547,33 @@
                             <div class="elementor-widget-container">
                                 <div class='cui-wrapper cui-custom cui-border' style='overflow: hidden;'>
                                     <div class='cui-wrap-link'>
-                                        <div class='header-cui'><a id='cui-link-191811'
+                                        <div class='header-cui'>
+                                            <a id='total-ucapan-link'
                                                 class='cui-link cui-icon-link cui-icon-link-true auto-load-true'
                                                 href='?post_id=191811&amp;comments=20&amp;get=300&amp;order=DESC'
-                                                title='20 Comment'><span>20</span> Comments</a></div>
+                                                title='20 Comment'' title=' Jumlah Ucapan'>
+                                                <span id="total-ucapan-angka">0</span> <span
+                                                    id="total-ucapan-teks">Komentar</span>
+                                            </a>
+                                        </div>
                                     </div><!--.cui-wrap-link-->
                                     <div id='cui-wrap-commnent-191811' class='cui-wrap-comments' style='display:none;'>
                                         <div id='cui-wrap-form-191811' class='cui-clearfix'>
                                             <div class="cui-comment-attendence">
                                                 <div id="invitation-count-191811" class="cui_comment_count_card_wrap">
                                                     <div class="cui_comment_count_card_row">
-                                                        <div class="cui_comment_count_card Bluetext">
-                                                            <span>10</span><span>Hadir</span>
+                                                        <div id="count-hadir"
+                                                            class="cui_comment_count_card cui_card-hadir heading-white">
+                                                            <span id="hadir-angka">0</span><span>Hadir</span>
                                                         </div>
-                                                        <div class="cui_comment_count_card Bluetext">
-                                                            <span>1</span><span>Tidak hadir</span>
+                                                        <div
+                                                            class="cui_comment_count_card cui_card-tidak_hadir heading-white">
+                                                            <span id="tidak-hadir-angka">1</span><span>Tidak
+                                                                hadir</span>
                                                         </div>
-                                                        <div class="cui_comment_count_card Bluetext">
-                                                            <span>1</span><span>Masih Ragu</span>
+                                                        <div
+                                                            class="cui_comment_count_card cui_card-masih_ragu heading-white">
+                                                            <span id="masih-ragu-angka">1</span><span>Mungkin</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3130,69 +3582,72 @@
                                                 <div id='cui-container-form-191811'
                                                     class='cui-container-form cui-no-login'>
                                                     <div id='respond-191811' class='respond cui-clearfix'>
-                                                        <form action='https://menujuacara.com/wp-comments-post.php'
-                                                            method='post' id='commentform-191811'>
-                                                            <p class="comment-form-author cui-field-1"><input
-                                                                    id="author" name="author" type="text"
-                                                                    aria-required="true" class="cui-input"
-                                                                    placeholder="Nama" /><span
-                                                                    class="cui-required">*</span><span
-                                                                    class="cui-error-info cui-error-info-name">Mohon
-                                                                    maaf! Khusus untuk tamu undangan</span></p>
-                                                            <div class="cui-wrap-textarea"><textarea
-                                                                    id="cui-textarea-191811"
+                                                        <form id="commentform-191811" onsubmit="kirimUcapan(event)">
+
+                                                            <p class="comment-form-author cui-field-1">
+                                                                <input id="author" name="nama" type="text" required
+                                                                    class="cui-input" placeholder="Nama Anda" />
+                                                                <span class="cui-required">*</span>
+                                                            </p>
+
+                                                            <div class="cui-wrap-textarea">
+                                                                <textarea id="cui-textarea-191811"
                                                                     class="waci_comment cui-textarea autosize-textarea"
-                                                                    name="comment" aria-required="true"
-                                                                    placeholder="Ucapan" rows="2"></textarea><span
-                                                                    class="cui-required">*</span><span
-                                                                    class="cui-error-info cui-error-info-text">2
-                                                                    characters minimum.</span></div>
-                                                            <div class="nm-wrap-comments">
-                                                                <div class="row">
-                                                                </div>
+                                                                    name="ucapan" required
+                                                                    placeholder="Tulis ucapan Anda..."
+                                                                    rows="2"></textarea>
+                                                                <span class="cui-required">*</span>
                                                             </div>
+
                                                             <div
                                                                 class="cui-clearfix cui-wrap-select cui-field-wrap cui-select-attending">
-
                                                                 <select class="waci_comment cui-select"
-                                                                    name="konfirmasi" id="konfirmasi">
+                                                                    name="konfirmasi" id="konfirmasi" required>
                                                                     <option value="" disabled selected>Konfirmasi
                                                                         Kehadiran</option>
-                                                                    <option value="Hadir">Datang</option>
-                                                                    <option value="Tidak hadir">Absen</option>
+                                                                    <option value="Hadir">Hadir</option>
+                                                                    <option value="Tidak Hadir">Tidak Hadir</option>
                                                                     <option value="Masih Ragu">Mungkin</option>
-                                                                </select><span class="cui-required"></span><span
-                                                                    class="cui-error-info cui-error-info-confirm"></span>
+                                                                </select>
+                                                                <span class="cui-required">*</span>
                                                             </div>
-                                                            <div class='cui-wrap-submit cui-clearfix'>
-                                                                <p class='form-submit'><span class="cui-hide">Do not
-                                                                        change these fields following</span><input
-                                                                        type="text" class="cui-hide" name="name"
-                                                                        value="username"><input type="text"
-                                                                        class="cui-hide" name="nombre" value=""><input
-                                                                        type="text" class="cui-hide" name="form-cui"
-                                                                        value=""><input type="button"
-                                                                        class="cui-form-btn cui-cancel-btn"
-                                                                        value="Cancel"><input name='submit'
-                                                                        id='submit-191811' value='Kirim'
-                                                                        type='submit' /><input type='hidden'
-                                                                        name='commentpress' value='true' /><input
-                                                                        type='hidden' name='comment_post_ID'
-                                                                        value='191811' id='comment_post_ID' />
-                                                                    <input type='hidden' name='comment_parent'
-                                                                        id='comment_parent' value='0' />
+
+                                                            <div class="cui-wrap-submit cui-clearfix">
+                                                                <p class="form-submit">
+                                                                    <button type="submit" id="submit-191811"
+                                                                        class="cui-form-btn cui-submit-btn">
+                                                                        Kirim Ucapan
+                                                                    </button>
                                                                 </p>
                                                             </div>
                                                         </form>
+                                                        <div id='cui-box' class='cui-box'>
+
+                                                        </div>
                                                     </div>
                                                 </div><!--.cui-container-form-->
                                             </div><!--.cui-clearfix cui-relative-->
                                         </div><!--.cui-wrap-form-->
                                         <div id='cui-comment-status-191811' class='cui-comment-status'></div>
                                         <div id='cui-box' class='cui-box'>
-                                            <ul id='cui-container-comment-191811'
-                                                class='cui-container-comments cui-order-DESC  cui-has-20-comments cui-multiple-comments'
-                                                data-order='DESC'></ul>
+                                            <div id="daftar-komentar">
+                                                <p style="text-align: center; color: #888;">Memuat ucapan...</p>
+                                            </div>
+                                            <div style="text-align: center; margin-top: 20px; margin-bottom: 40px;">
+                                                <button id="tombol-next-ucapan" onclick="muatLagi()" style="
+        background: var(--bgTombolKirim, #1a237e); 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        border-radius: 8px; 
+        cursor: pointer;
+        font-weight: bold;
+        width: 100%;
+        display: none; /* Sembunyikan secara default, JS yang akan menampilkannya */
+    ">
+                                                    Muat Lebih Banyak
+                                                </button>
+                                            </div>
                                         </div>
                                         <div id='cui-holder-id-191811' class='cui-holder-191811 cui-holder'></div>
                                     </div><!--.cui-wrap-comments-->
@@ -3390,6 +3845,143 @@
                 </div>
             </div>
         </section>
+
+        <div class="invited-section-overhaul" id="turut-mengundang-overhaul">
+
+            <h2 class="main-heading">TURUT</h2>
+            <h2 class="sub-heading">Mengundang</h2>
+
+            <div class="invited-list-container">
+
+                <div class="invited-card">
+                    <h4>Bpk. DR. H. M. Hidayat Nur Wahid, MA</h4>
+                    <p>Wakil Ketua MPR RI</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Drs. H. Khoirudin, M.Si</h4>
+                    <p>Ketua DPRD Prov. DKI Jakarta</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Zakaria Maulana Alif, S.Kom</h4>
+                    <p>Humas Fraksi PKS DPRD DKI Jakarta</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Syarifudin, S.H, M.SI</h4>
+                    <p>Kepala Sudin Penanggulangan Kebakaran & Penyelamatan Jakarta Pusat</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. H. Asril Rizal, S.Sos</h4>
+                    <p>Kasudin Penanggulangan Kebakaran & Penyelamatan Jakarta Selatan</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Triyanto, S.H</h4>
+                    <p>Kepala Seksi Operasi Penanggulangan Kebakaran & Penyelamatan Jakarta Pusat</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Achmad Syaiful Kahfi, S.T., M.M</h4>
+                    <p>Kepala Seksi Operasi Penanggulangan Kebakaran & Penyelamatan Jakarta Barat</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Santos, S.Kom</h4>
+                    <p>Kepala Seksi Tata Usaha Damkar Jakarta Pusat</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Suprianto, S.Sos</h4>
+                    <p>Kepala Seksi Sarana Damkar Jakarta Pusat</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Mulandono, S.H, M.M</h4>
+                    <p>Kepala Seksi Pencegahan Damkar Jakarta Pusat</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Moch. Arief, S.Sos, M.Ec.Dev</h4>
+                    <p>Kepala Sektor 1 Damkar Gambir</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Subadi, S.Sos.MM</h4>
+                    <p>Kepala Sektor 2 Damkar Sawah Besar</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Sukarno, S.AP</h4>
+                    <p>Kepala Sektor 3 Damkar Kemayoran</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Bp Karnawan, S.H</h4>
+                    <p>Kepala Sektor 4 Damkar Senen</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. H muhammad Amin, S.E.,M.M</h4>
+                    <p>Kepala Sektor 5 Damkar Cempaka Putih</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Joko Sutrisno, S.AP, M.AP</h4>
+                    <p>Kepala Sektor 6 Damkar Menteng</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Yuli, S.E</h4>
+                    <p>Kepala Sektor 7 Damkar Tanah Abang</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Prasetya Agung Nugroho, S.PD</h4>
+                    <p>Kepala Sektor 8 Damkar Johar Baru</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Heru Agus Mawardi, S.Kom.,M.M</h4>
+                    <p>Kasektor Damkar Cengkareng</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Sri Hartono, S.H</h4>
+                    <p>Kepala Asrama Damkar Cengkareng</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Ustadz Zairil Yano</h4>
+                    <p>Ketua DKM Masjid Al Muhajirin</p>
+                </div>
+
+                <div class="invited-card">
+                    <h4>Bpk. Agus Supriyanto, S.Pd</h4>
+                    <p>Sekretaris RW 18 Cengkareng Barat</p>
+                </div>
+
+                <div class="invited-card" style="margin-bottom: 0;">
+                    <h4>Bpk Rudy Ansyah</h4>
+                    <p>Ketua RT 06/18 Cengkareng Barat</p>
+                </div>
+
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="family-list-container">
+                <h2>Keluarga Besar</h2>
+
+                <h4>Kel. Besar Trahyosomiharjo (Boyolali)</h4>
+                <h4>Kel. Besar Fachrurodji (Jakarta)</h4>
+                <h4>Kel. Besar Aki nana (Bandung)</h4>
+                <h4 style="margin-bottom: 0;">Kel. Besar Abah engkos (Bandung)</h4>
+            </div>
+        </div>
+
         <section
             class="elementor-section elementor-top-section elementor-element elementor-element-638aa538 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
             data-id="638aa538" data-element_type="section"
@@ -3453,7 +4045,9 @@
                                             data-id="2449d660" data-element_type="widget"
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
-                                                <h2 class="elementor-heading-title elementor-size-default ucapan-kontras">Atas
+                                                <h2
+                                                    class="elementor-heading-title elementor-size-default ucapan-kontras">
+                                                    Atas
                                                     kehadiran dan do'a restunya,<br>kami ucapkan terimakasih.</h2>
                                             </div>
                                         </div>
@@ -3715,17 +4309,9 @@
                                                                 </script>
 
                                                                 <div id="audio-container" class="audio-box">
-
-
-
                                                                     <audio id="song" loop>
-                                                                        <source
-                                                                            src="1.mp3"
-                                                                            type="audio/mp3">
+                                                                        <source src="1.mp3" type="audio/mp3">
                                                                     </audio>
-
-
-
                                                                     <div class="elementor-icon-wrapper"
                                                                         id="unmute-sound" style="display: none;">
                                                                         <div class="elementor-icon">
@@ -3778,7 +4364,7 @@
         <section
             class="elementor-section elementor-top-section elementor-element elementor-element-56bee227 elementor-section-height-min-height elementor-section-items-stretch elementor-section-boxed elementor-section-height-default"
             data-id="56bee227" data-element_type="section" id="cover"
-            data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1891,&quot;url&quot;:&quot;https://i.pinimg.com/736x/65/46/66/654666002267d8971e5bd143dcf05f7a.jpg&quot;},{&quot;id&quot;:1890,&quot;url&quot;:&quot;https://i.pinimg.com/736x/e5/22/a0/e522a070e648410bd5f6666a8534bc93.jpg&quot;},{&quot;id&quot;:1889,&quot;url&quot;:&quot;https://i.pinimg.com/736x/75/86/48/758648a786dcbd1f0274453241b4ab34.jpg&quot;}],&quot;background_slideshow_transition_duration&quot;:600,&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;}">
+            data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:1891,&quot;url&quot;:&quot;3.jpeg&quot;},{&quot;id&quot;:1890,&quot;url&quot;:&quot;4.jpeg&quot;},{&quot;id&quot;:1889,&quot;url&quot;:&quot;1.jpeg&quot;}],&quot;background_slideshow_transition_duration&quot;:600,&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;}">
             <div class="elementor-background-overlay"></div>
             <div class="elementor-container elementor-column-gap-default">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9c57bf8"
@@ -4275,6 +4861,551 @@
             // Ubah angka ini untuk mengubah kecepatan bergantian slide
             setTimeout(showAutoSlides, 2000);
         }
+    </script>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+        // =======================================================
+        // 1. KONFIGURASI SUPABASE
+        // =======================================================
+        const supabaseUrl = "https://tcqgtfqbnndsewjpdyjs.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjcWd0ZnFibm5kc2V3anBkeWpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTI2NDYsImV4cCI6MjA3NzQ4ODY0Nn0.RP-MRyU6dy1PkZLkj3ZpAhfz6rsPO4k0heX0Tm5JlqY";
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // =======================================================
+        // 2. VARIABEL KONTROL HALAMAN
+        // =======================================================
+        const UCAPAN_PER_HALAMAN = 1000000;
+        let offsetSaatIni = 0;
+        let semuaDataSudahDimuat = false;
+        const scrollContainerId = "daftar-komentar";
+
+        // Kunci localStorage untuk melacak ucapan yang sudah di-like
+        const LIKED_UCAPAN_KEY = 'liked_ucapan_ids';
+
+        // --- IDENTITAS PENGANTIN/ADMIN (Digunakan saat MENGIRIM data) ---
+        const NAMA_PENGANTIN_1 = "djshdjhsadhsadjadoajdoisajdoia";
+        const NAMA_PENGANTIN_2 = "jdlksjdlksajdlksjdlksjflkdsjflkdsjfl";
+        const ADMIN_NAMES = [NAMA_PENGANTIN_1, NAMA_PENGANTIN_2, "Admin"];
+        // --- AKHIR IDENTITAS PENGANTIN/ADMIN ---
+
+        // =======================================================
+        // 3. FUNGSI UTILITY: TIME AGO
+        // =======================================================
+        function timeAgo(isoString) {
+            const past = new Date(isoString).getTime();
+            const now = new Date().getTime();
+            const diff = now - past;
+            const seconds = Math.floor(diff / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+            const months = Math.floor(days / 30);
+            const years = Math.floor(days / 365);
+
+            if (seconds < 60) {
+                return "Baru saja";
+            } else if (minutes < 60) {
+                return minutes === 1 ? "1 menit yang lalu" : minutes + " menit yang lalu";
+            } else if (hours < 24) {
+                return hours === 1 ? "1 jam yang lalu" : hours + " jam yang lalu";
+            } else if (days < 30) {
+                return days === 1 ? "1 hari yang lalu" : days + " hari yang lalu";
+            } else if (months < 12) {
+                return months === 1 ? "1 bulan yang lalu" : months + " bulan yang lalu";
+            } else {
+                return years === 1 ? "1 tahun yang lalu" : years + " tahun yang lalu";
+            }
+        }
+
+        // =======================================================
+        // FUNGSI UTILITY LIKES (LocalStorage)
+        // =======================================================
+        function getLikedUcapanIds() {
+            try {
+                return JSON.parse(localStorage.getItem(LIKED_UCAPAN_KEY) || '[]');
+            } catch (e) {
+                console.error("Error parsing localStorage:", e);
+                return [];
+            }
+        }
+
+        function setLikedUcapanIds(ids) {
+            try {
+                localStorage.setItem(LIKED_UCAPAN_KEY, JSON.stringify(ids));
+            } catch (e) {
+                console.error("Error setting localStorage:", e);
+            }
+        }
+
+        // =======================================================
+        // 4. FUNGSI MUAT UCAPAN UTAMA (REVISI PADA Ikon Like)
+        // =======================================================
+        async function muatUcapan(mode) {
+            const scrollContainer = document.getElementById(scrollContainerId);
+            const tombolNext = document.getElementById("tombol-next-ucapan");
+
+            if (!scrollContainer) return;
+
+            if (mode === 'replace') {
+                scrollContainer.innerHTML = '<p style="text-align: center; color: #888;">Memuat ucapan...</p>';
+                offsetSaatIni = 0;
+                semuaDataSudahDimuat = false;
+            }
+
+            tombolNext.disabled = true;
+            tombolNext.textContent = "Memuat...";
+
+            // Ambil data
+            const { data, error } = await supabase
+                .from("ucapan")
+                .select("*")
+                .order("id", { ascending: false })
+                .range(offsetSaatIni, offsetSaatIni + UCAPAN_PER_HALAMAN - 1);
+
+            tombolNext.disabled = false;
+            tombolNext.textContent = "Muat Lebih Banyak";
+
+            if (error) {
+                console.error("Gagal mengambil data:", error);
+                if (mode === 'replace') {
+                    scrollContainer.innerHTML = '<p style="text-align: center; color: red;">Gagal memuat ucapan.</p>';
+                }
+                return;
+            }
+
+            if (data.length < UCAPAN_PER_HALAMAN) {
+                semuaDataSudahDimuat = true;
+                tombolNext.style.display = 'none';
+            } else {
+                tombolNext.style.display = 'block';
+            }
+
+            // --- Logika Pengelompokan Bersarang (Nested) ---
+            const komentarUtama = [];
+            const balasan = {};
+
+            // Ambil ID ucapan yang sudah di-like dari localStorage
+            const likedIds = getLikedUcapanIds();
+
+            // 1. Memproses dan mengelompokkan data
+            data.forEach(d => {
+                if (d.parent_id) {
+                    if (!balasan[d.parent_id]) {
+                        balasan[d.parent_id] = [];
+                    }
+                    balasan[d.parent_id].push(d);
+                } else {
+                    komentarUtama.push(d);
+                }
+            });
+
+            // 2. Fungsi untuk menghasilkan HTML (Bisa untuk Induk atau Anak)
+            function generateUcapanHtml(d, isReply = false) {
+                // Cek status like dan tentukan ikon/kelas
+                const isLiked = likedIds.includes(d.id);
+                const loveIcon = isLiked ? '❤️' : '🤍'; // ❤️ (Merah) atau 🤍 (Putih/Outline)
+                const likeClass = isLiked ? 'liked' : '';
+
+                // MENGGUNAKAN FITUR is_admin_reply DARI TABEL
+                const isOfficialReply = d.is_admin_reply === true;
+
+                // Logika Mahkota
+                const senderNameHtml = isOfficialReply
+                    ? `<span class="official-name"> ${d.nama}&nbsp;&nbsp;&nbsp;<i class="fas fa-crown"></i></span>`
+                    : `<span class="ucapan-nama">${d.nama}</span>`;
+
+                const konfirmasiClass = d.konfirmasi ? d.konfirmasi.toLowerCase().replace(' ', '_') : 'tidak_terkonfirmasi';
+                const waktuTeks = timeAgo(d.created_at);
+                const parentId = d.id;
+
+                const itemClass = isReply ? "ucapan-item ucapan-reply" : "ucapan-item";
+
+                let html = `
+            <div class="${itemClass}">
+                <div class="ucapan-header">
+                    <div class="ucapan-nama-group">
+                        ${senderNameHtml}
+                        ${!isReply && d.konfirmasi ? `<span class="badge-konfirmasi ${konfirmasiClass}">${d.konfirmasi}</span>` : ''} 
+                    </div>
+                    <span class="ucapan-waktu">${waktuTeks}</span>
+                </div>
+                <div class="ucapan-text">
+                    ${d.ucapan}
+                </div>
+                <div class="ucapan-footer">
+                    <button class="btn-action btn-reply" onclick="tampilkanFormBalasan(${parentId}, '${d.nama}')">Balas</button>
+                    <button class="btn-action btn-like ${likeClass}" id="like-btn-${d.id}" onclick="toggleLike(${d.id})">
+                        <span id="like-icon-${d.id}">${loveIcon}</span> 
+                        (<span id="like-count-${d.id}">${d.likes || 0}</span>)
+                    </button>
+                </div>
+                
+                <div id="reply-form-placeholder-${parentId}" class="reply-form-placeholder"></div>
+            `;
+
+                // Jika ada balasan, tambahkan container balasan
+                if (balasan[parentId] && balasan[parentId].length > 0) {
+                    html += `<div class="ucapan-replies-container">`;
+                    const sortedReplies = balasan[parentId].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+
+                    sortedReplies.forEach(reply => {
+                        html += generateUcapanHtml(reply, true);
+                    });
+                    html += `</div>`;
+                }
+
+                html += `</div>`; // Penutup div ucapan-item/ucapan-reply
+                return html;
+            }
+
+            // 3. Map Komentar Utama dan Gabungkan dengan Balasannya
+            const htmlBaru = komentarUtama
+                .map(d => generateUcapanHtml(d, false))
+                .join("");
+            // --- Akhir Logika Pengelompokan Bersarang ---
+
+            if (mode === 'replace') {
+                scrollContainer.innerHTML = htmlBaru;
+            } else {
+                scrollContainer.insertAdjacentHTML('beforeend', htmlBaru);
+            }
+
+            offsetSaatIni += data.length;
+        }
+
+        // =======================================================
+        // 5. FUNGSI MUAT LEBIH BANYAK
+        // =======================================================
+        function muatLagi() {
+            if (!semuaDataSudahDimuat) {
+                muatUcapan('append');
+            }
+        }
+
+        // =======================================================
+        // 6. FUNGSI TAMPILKAN FORM BALASAN
+        // =======================================================
+        function tampilkanFormBalasan(parentId, parentName) {
+            const placeholder = document.getElementById(`reply-form-placeholder-${parentId}`);
+
+            if (placeholder && placeholder.querySelector('form')) {
+                placeholder.innerHTML = '';
+                return;
+            }
+
+            document.querySelectorAll('.reply-form-placeholder').forEach(p => {
+                if (p.id !== placeholder.id) p.innerHTML = '';
+            });
+
+            const formHtml = `
+            <form class="reply-form" onsubmit="kirimBalasan(event, ${parentId})">
+                <h4 style="font-size: 14px; margin-top: 10px; margin-bottom: 5px; color: #555;">Balas untuk ${parentName}</h4>
+                
+                <input type="text" name="nama" placeholder="Nama Anda" required style="width: 100%; padding: 8px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                
+                <textarea name="balasan" placeholder="Tulis balasan Anda..." required style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+                
+                <input type="hidden" name="parent_id" value="${parentId}">
+                
+                <button type="submit" style="background-color: var(--bgTombolKirim, #1a237e); color: white; border: none; padding: 6px 15px; border-radius: 4px; cursor: pointer; font-size: 13px;">Kirim Balasan</button>
+            </form>
+        `;
+
+            if (placeholder) {
+                placeholder.innerHTML = formHtml;
+                placeholder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        // =======================================================
+        // 7. FUNGSI MENGIRIM BALASAN
+        // =======================================================
+        async function kirimBalasan(event, parentId) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            const nama = form.querySelector('[name="nama"]').value;
+            const ucapan = form.querySelector('[name="balasan"]').value;
+            const konfirmasi = null;
+
+            // MENENTUKAN NILAI is_admin_reply 
+            const isOfficialReply = ADMIN_NAMES.includes(nama);
+
+            if (!nama || !ucapan) {
+                alert("Nama dan balasan wajib diisi.");
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = "Mengirim...";
+
+            const { error } = await supabase
+                .from("ucapan")
+                .insert([{
+                    nama: nama,
+                    ucapan: ucapan,
+                    konfirmasi: konfirmasi,
+                    parent_id: parentId,
+                    is_admin_reply: isOfficialReply
+                }]);
+
+            submitButton.disabled = false;
+            submitButton.textContent = "Kirim Balasan";
+
+            if (error) {
+                alert("Gagal mengirim balasan: " + error.message);
+                console.error("Gagal mengirim data balasan:", error);
+                return;
+            }
+
+            alert("Balasan berhasil dikirim!");
+            form.reset();
+
+            document.getElementById(`reply-form-placeholder-${parentId}`).innerHTML = '';
+            muatUcapan('replace');
+            if (typeof hitungTotalUcapan === 'function') hitungTotalUcapan();
+            if (typeof hitungStatusKehadiran === 'function') hitungStatusKehadiran();
+        }
+
+        // =======================================================
+        // 8. FUNGSI MENGIRIM UCAPAN UTAMA (kirimUcapan)
+        // =======================================================
+        async function kirimUcapan(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const namaInput = form.querySelector('[name="nama"]').value;
+            const ucapanInput = form.querySelector('[name="ucapan"]').value;
+            const konfirmasiInput = form.querySelector('[name="konfirmasi"]').value;
+
+            // MENENTUKAN NILAI is_admin_reply 
+            const isOfficialUcapan = ADMIN_NAMES.includes(namaInput);
+
+            if (!namaInput || !ucapanInput || !konfirmasiInput) {
+                alert("Mohon lengkapi semua bidang yang wajib diisi.");
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = "Mengirim...";
+
+            // TIDAK ADA parent_id di sini, berarti komentar utama
+            const { error } = await supabase
+                .from("ucapan")
+                .insert([{
+                    nama: namaInput,
+                    ucapan: ucapanInput,
+                    konfirmasi: konfirmasiInput,
+                    is_admin_reply: isOfficialUcapan
+                }]);
+
+            submitButton.disabled = false;
+            submitButton.textContent = "Kirim Ucapan";
+
+            if (error) {
+                alert("Gagal mengirim ucapan: " + error.message);
+                console.error("Gagal mengirim data:", error);
+                return;
+            }
+
+            alert("Ucapan berhasil dikirim! Silakan lihat di bawah.");
+            form.reset();
+
+            muatUcapan('replace');
+            if (typeof hitungTotalUcapan === 'function') hitungTotalUcapan();
+            if (typeof hitungStatusKehadiran === 'function') hitungStatusKehadiran();
+        }
+
+        // =======================================================
+        // 9. FUNGSI MENGHITUNG TOTAL UCAPAN (FILTER PARENT_ID)
+        // =======================================================
+        async function hitungTotalUcapan() {
+            // Hanya hitung baris di mana parent_id IS NULL
+            const { count, error } = await supabase
+                .from('ucapan')
+                .select('*', { count: 'exact', head: true })
+                .is('parent_id', null); // Filter utama: hanya hitung komentar utama
+
+            if (error) {
+                console.error("Gagal menghitung total data:", error);
+                document.getElementById('total-ucapan-angka').textContent = '—';
+                document.getElementById('total-ucapan-teks').textContent = 'Komentar';
+                return;
+            }
+
+            const total = count || 0;
+
+            document.getElementById('total-ucapan-angka').textContent = total;
+            document.getElementById('total-ucapan-teks').textContent = total > 0 ? 'Ucapan' : 'Ucapan';
+        }
+
+
+        // =======================================================
+        // 10. FUNGSI MENGHITUNG STATUS KEHADIRAN
+        // =======================================================
+        async function hitungStatusKehadiran() {
+            const statuses = ['Hadir', 'Tidak Hadir', 'Masih Ragu'];
+
+            for (const status of statuses) {
+                const { count, error } = await supabase
+                    .from('ucapan')
+                    .select('*', { count: 'exact', head: true })
+                    .eq('konfirmasi', status);
+
+                if (error) {
+                    console.error(`Gagal menghitung status ${status}:`, error);
+                    continue;
+                }
+
+                const total = count || 0;
+                const targetId = status.toLowerCase().replace(' ', '-') + '-angka';
+
+                const element = document.getElementById(targetId);
+                if (element) {
+                    element.textContent = total;
+                }
+            }
+        }
+
+        // =======================================================
+        // 12. FUNGSI TOGGLE LIKE ⭐️ (LIKE/DISLIKE)
+        // =======================================================
+        async function toggleLike(ucapanId) {
+            const likeButton = document.getElementById(`like-btn-${ucapanId}`);
+            const likeCountSpan = document.getElementById(`like-count-${ucapanId}`);
+            const likeIconSpan = document.getElementById(`like-icon-${ucapanId}`);
+
+            if (!likeButton) return;
+
+            likeButton.disabled = true; // Nonaktifkan tombol saat proses
+
+            // 1. Cek status Like dari LocalStorage
+            let likedIds = getLikedUcapanIds();
+            const isLiked = likedIds.includes(ucapanId);
+
+            // 2. Tentukan operasi dan nilai baru
+            let adjustment;
+            let newLikedIds;
+            let newIcon;
+
+            if (isLiked) {
+                // DISLIKE (Hapus Like)
+                adjustment = -1;
+                newLikedIds = likedIds.filter(id => id !== ucapanId);
+                newIcon = '🤍';
+            } else {
+                // LIKE (Tambah Like)
+                adjustment = 1;
+                newLikedIds = [...likedIds, ucapanId];
+                newIcon = '❤️';
+            }
+
+            // 3. Ambil data Like saat ini dari Supabase
+            const { data: currentData, error: fetchError } = await supabase
+                .from("ucapan")
+                .select("likes")
+                .eq("id", ucapanId)
+                .single();
+
+            if (fetchError || !currentData) {
+                console.error("Gagal mengambil jumlah likes saat ini:", fetchError);
+                likeButton.disabled = false;
+                return;
+            }
+
+            const currentLikes = currentData.likes || 0;
+            // Pastikan jumlah like tidak menjadi negatif
+            const newLikes = Math.max(0, currentLikes + adjustment);
+
+            // 4. Update jumlah Like di Supabase
+            const { error: updateError } = await supabase
+                .from("ucapan")
+                .update({ likes: newLikes })
+                .eq("id", ucapanId);
+
+            likeButton.disabled = false; // Aktifkan kembali tombol
+
+            if (updateError) {
+                console.error("Gagal memperbarui likes:", updateError);
+                alert("Gagal memperbarui status like. Silakan coba lagi.");
+                return;
+            }
+
+            // 5. Update LocalStorage dan Tampilan
+
+            // Perbarui localStorage
+            setLikedUcapanIds(newLikedIds);
+
+            // Perbarui tampilan di halaman secara instan
+            if (likeCountSpan) {
+                likeCountSpan.textContent = newLikes;
+            }
+            if (likeIconSpan) {
+                likeIconSpan.textContent = newIcon;
+            }
+
+            // Perbarui kelas tombol untuk styling (merah atau putih)
+            if (isLiked) {
+                likeButton.classList.remove('liked');
+            } else {
+                likeButton.classList.add('liked');
+            }
+        }
+
+
+        // =======================================================
+        // 11. INISIASI
+        // =======================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            muatUcapan('replace');
+            if (typeof hitungTotalUcapan === 'function') hitungTotalUcapan();
+            if (typeof hitungStatusKehadiran === 'function') hitungStatusKehadiran();
+
+            const tombolNext = document.getElementById("tombol-next-ucapan");
+            if (tombolNext) {
+                tombolNext.addEventListener('click', () => muatLagi());
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Pilih semua elemen kartu yang akan dianimasikan
+            const guestCards = document.querySelectorAll('.invited-card');
+
+            // 2. Tentukan opsi Intersection Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Ketika 20% elemen terlihat
+            };
+
+            // 3. Tentukan fungsi yang akan dijalankan saat elemen masuk/keluar viewport
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    const element = entry.target;
+
+                    if (entry.isIntersecting) {
+                        // Masuk viewport: Terapkan animasi masuk yang "lucu"
+                        element.classList.add('animate-bounce-in');
+                        element.classList.remove('animate-fade-out');
+                    } else {
+                        // Keluar viewport: Terapkan animasi keluar
+                        element.classList.add('animate-fade-out');
+                        element.classList.remove('animate-bounce-in');
+                    }
+                });
+            };
+
+            // 4. Buat dan jalankan Observer
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            // 5. Amati setiap card
+            guestCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
     </script>
 </body>
 
