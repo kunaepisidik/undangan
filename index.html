@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="all.min.css">
     <meta name='robots' content='noindex, nofollow' />
     <style>
+        .icon-crown::before {
+            /* \1F451 adalah kode Unicode heksadesimal untuk Emoji Mahkota (👑) */
+            content: "\1F451";
+            /* Mengatur jarak agar simbol tidak terlalu mepet dengan teks */
+            margin-right: 5px;
+            /* Anda bisa mengatur ukuran dan warna simbol di sini jika diperlukan */
+            font-size: 1.2em;
+        }
+
         /* ======================================================= */
         /* 🎨 CLASS BARU: .invited-section-overhaul 🎨 */
         /* ======================================================= */
@@ -656,7 +665,8 @@
     <meta property="og:site_name" content="Undangan Digital Website" />
     <meta property="article:published_time" content="2025-08-08T06:33:06+00:00" />
     <meta property="article:modified_time" content="2025-08-08T10:17:06+00:00" />
-    <meta property="og:image" content="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/1.jpeg" />
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/kunaepisidik/undangan/refs/heads/main/1.jpeg" />
     <meta property="og:image:width" content="226" />
     <meta property="og:image:height" content="226" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -672,12 +682,8 @@
         /*! This file is auto-generated */
         !function (s, n) { var o, i, e; function c(e) { try { var t = { supportTests: e, timestamp: (new Date).valueOf() }; sessionStorage.setItem(o, JSON.stringify(t)) } catch (e) { } } function p(e, t, n) { e.clearRect(0, 0, e.canvas.width, e.canvas.height), e.fillText(t, 0, 0); var t = new Uint32Array(e.getImageData(0, 0, e.canvas.width, e.canvas.height).data), a = (e.clearRect(0, 0, e.canvas.width, e.canvas.height), e.fillText(n, 0, 0), new Uint32Array(e.getImageData(0, 0, e.canvas.width, e.canvas.height).data)); return t.every(function (e, t) { return e === a[t] }) } function u(e, t) { e.clearRect(0, 0, e.canvas.width, e.canvas.height), e.fillText(t, 0, 0); for (var n = e.getImageData(16, 16, 1, 1), a = 0; a < n.data.length; a++)if (0 !== n.data[a]) return !1; return !0 } function f(e, t, n, a) { switch (t) { case "flag": return n(e, "\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f", "\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f") ? !1 : !n(e, "\ud83c\udde8\ud83c\uddf6", "\ud83c\udde8\u200b\ud83c\uddf6") && !n(e, "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f", "\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f"); case "emoji": return !a(e, "\ud83e\udedf") }return !1 } function g(e, t, n, a) { var r = "undefined" != typeof WorkerGlobalScope && self instanceof WorkerGlobalScope ? new OffscreenCanvas(300, 150) : s.createElement("canvas"), o = r.getContext("2d", { willReadFrequently: !0 }), i = (o.textBaseline = "top", o.font = "600 32px Arial", {}); return e.forEach(function (e) { i[e] = t(o, e, n, a) }), i } function t(e) { var t = s.createElement("script"); t.src = e, t.defer = !0, s.head.appendChild(t) } "undefined" != typeof Promise && (o = "wpEmojiSettingsSupports", i = ["flag", "emoji"], n.supports = { everything: !0, everythingExceptFlag: !0 }, e = new Promise(function (e) { s.addEventListener("DOMContentLoaded", e, { once: !0 }) }), new Promise(function (t) { var n = function () { try { var e = JSON.parse(sessionStorage.getItem(o)); if ("object" == typeof e && "number" == typeof e.timestamp && (new Date).valueOf() < e.timestamp + 604800 && "object" == typeof e.supportTests) return e.supportTests } catch (e) { } return null }(); if (!n) { if ("undefined" != typeof Worker && "undefined" != typeof OffscreenCanvas && "undefined" != typeof URL && URL.createObjectURL && "undefined" != typeof Blob) try { var e = "postMessage(" + g.toString() + "(" + [JSON.stringify(i), f.toString(), p.toString(), u.toString()].join(",") + "));", a = new Blob([e], { type: "text/javascript" }), r = new Worker(URL.createObjectURL(a), { name: "wpTestEmojiSupports" }); return void (r.onmessage = function (e) { c(n = e.data), r.terminate(), t(n) }) } catch (e) { } c(n = g(i, f, p, u)) } t(n) }).then(function (e) { for (var t in e) n.supports[t] = e[t], n.supports.everything = n.supports.everything && n.supports[t], "flag" !== t && (n.supports.everythingExceptFlag = n.supports.everythingExceptFlag && n.supports[t]); n.supports.everythingExceptFlag = n.supports.everythingExceptFlag && !n.supports.flag, n.DOMReady = !1, n.readyCallback = function () { n.DOMReady = !0 } }).then(function () { return e }).then(function () { var e; n.supports.everything || (n.readyCallback(), (e = n.source || {}).concatemoji ? t(e.concatemoji) : e.wpemoji && e.twemoji && (t(e.twemoji), t(e.wpemoji))) })) }((window, document), window._wpemojiSettings);
     </script>
-    <link rel='stylesheet' id='bdt-uikit-css'
-        href='bdt-uikit.css'
-        media='all' />
-    <link rel='stylesheet' id='ep-helper-css'
-        href='ep-helper.css'
-        media='all' />
+    <link rel='stylesheet' id='bdt-uikit-css' href='bdt-uikit.css' media='all' />
+    <link rel='stylesheet' id='ep-helper-css' href='ep-helper.css' media='all' />
     <style id='wp-emoji-styles-inline-css'>
         img.wp-smiley,
         img.emoji {
@@ -1119,12 +1125,8 @@
             line-height: 1.6;
         }
     </style>
-    <link rel='stylesheet' id='exad-main-style-css'
-        href='exad-styles.min.css'
-        media='all' />
-    <link rel='stylesheet' id='cui_style-css'
-        href='cui_style.css'
-        media='screen' />
+    <link rel='stylesheet' id='exad-main-style-css' href='exad-styles.min.css' media='all' />
+    <link rel='stylesheet' id='cui_style-css' href='cui_style.css' media='screen' />
     <style id='cui_style-inline-css'>
         .cui-wrapper {
             font-size: 14px
@@ -1166,15 +1168,10 @@
             background-color: #d7a916 !important;
         }
     </style>
-    <link rel='stylesheet' id='hello-elementor-css'
-        href='style.min.css' media='all' />
-    <link rel='stylesheet' id='hello-elementor-theme-style-css'
-        href='theme.min.css' media='all' />
-    <link rel='stylesheet' id='hello-elementor-header-footer-css'
-        href='header-footer.min.css' media='all' />
-    <link rel='stylesheet' id='elementor-frontend-css'
-        href='frontend.min.css'
-        media='all' />
+    <link rel='stylesheet' id='hello-elementor-css' href='style.min.css' media='all' />
+    <link rel='stylesheet' id='hello-elementor-theme-style-css' href='theme.min.css' media='all' />
+    <link rel='stylesheet' id='hello-elementor-header-footer-css' href='header-footer.min.css' media='all' />
+    <link rel='stylesheet' id='elementor-frontend-css' href='frontend.min.css' media='all' />
     <style id='elementor-frontend-inline-css'>
         @-webkit-keyframes ha_fadeIn {
             0% {
@@ -2066,90 +2063,41 @@
             background-color: #e2498a
         }
     </style>
-    <link rel='stylesheet' id='elementor-post-11-css'
-        href='post-11.css' media='all' />
-    <link rel='stylesheet' id='weddingpress-wdp-css'
-        href='wdp.css' media='all' />
-    <link rel='stylesheet' id='kirim-kit-css'
-        href='guest-book.css'
-        media='all' />
-    <link rel='stylesheet' id='font-awesome-5-all-css'
-        href='all.min2.css'
-        media='all' />
-    <link rel='stylesheet' id='font-awesome-4-shim-css'
-        href='v4-shims.min.css'
-        media='all' />
-    <link rel='stylesheet' id='pp-extensions-css'
-        href='extensions.min.css'
-        media='all' />
-    <link rel='stylesheet' id='pp-tooltip-css'
-        href='tooltip.min.css'
-        media='all' />
-    <link rel='stylesheet' id='widget-spacer-css'
-        href='widget-spacer.min.css'
-        media='all' />
-    <link rel='stylesheet' id='widget-heading-css'
-        href='widget-heading.min.css'
-        media='all' />
-    <link rel='stylesheet' id='swiper-css'
-        href='swiper.min.css'
-        media='all' />
-    <link rel='stylesheet' id='e-swiper-css'
-        href='e-swiper.min.css'
-        media='all' />
-    <link rel='stylesheet' id='widget-image-css'
-        href='widget-image.min.css'
-        media='all' />
-    <link rel='stylesheet' id='e-animation-fadeInUp-css'
-        href='fadeInUp.min.css'
-        media='all' />
-    <link rel='stylesheet' id='widget-divider-css'
-        href='widget-divider.min.css'
-        media='all' />
-    <link rel='stylesheet' id='widget-counter-css'
-        href='widget-counter.min.css'
-        media='all' />
-    <link rel='stylesheet' id='widget-social-icons-css'
-        href='widget-social-icons.min.css'
-        media='all' />
-    <link rel='stylesheet' id='e-apple-webkit-css'
-        href='apple-webkit.min.css'
-        media='all' />
-    <link rel='stylesheet' id='e-sticky-css'
-        href='sticky.min.css'
-        media='all' />
-    <link rel='stylesheet' id='e-animation-zoomIn-css'
-        href='zoomIn.min.css'
-        media='all' />
+    <link rel='stylesheet' id='elementor-post-11-css' href='post-11.css' media='all' />
+    <link rel='stylesheet' id='weddingpress-wdp-css' href='wdp.css' media='all' />
+    <link rel='stylesheet' id='kirim-kit-css' href='guest-book.css' media='all' />
+    <link rel='stylesheet' id='font-awesome-5-all-css' href='all.min2.css' media='all' />
+    <link rel='stylesheet' id='font-awesome-4-shim-css' href='v4-shims.min.css' media='all' />
+    <link rel='stylesheet' id='pp-extensions-css' href='extensions.min.css' media='all' />
+    <link rel='stylesheet' id='pp-tooltip-css' href='tooltip.min.css' media='all' />
+    <link rel='stylesheet' id='widget-spacer-css' href='widget-spacer.min.css' media='all' />
+    <link rel='stylesheet' id='widget-heading-css' href='widget-heading.min.css' media='all' />
+    <link rel='stylesheet' id='swiper-css' href='swiper.min.css' media='all' />
+    <link rel='stylesheet' id='e-swiper-css' href='e-swiper.min.css' media='all' />
+    <link rel='stylesheet' id='widget-image-css' href='widget-image.min.css' media='all' />
+    <link rel='stylesheet' id='e-animation-fadeInUp-css' href='fadeInUp.min.css' media='all' />
+    <link rel='stylesheet' id='widget-divider-css' href='widget-divider.min.css' media='all' />
+    <link rel='stylesheet' id='widget-counter-css' href='widget-counter.min.css' media='all' />
+    <link rel='stylesheet' id='widget-social-icons-css' href='widget-social-icons.min.css' media='all' />
+    <link rel='stylesheet' id='e-apple-webkit-css' href='apple-webkit.min.css' media='all' />
+    <link rel='stylesheet' id='e-sticky-css' href='sticky.min.css' media='all' />
+    <link rel='stylesheet' id='e-animation-zoomIn-css' href='zoomIn.min.css' media='all' />
     <link rel='stylesheet' id='elementor-post-191811-css' href='css.css' media='all' />
-    <link rel='stylesheet' id='happy-icons-css'
-        href='style.min2.css'
-        media='all' />
-    <link rel='stylesheet' id='font-awesome-css'
-        href='font-awesome.min.css'
-        media='all' />
+    <link rel='stylesheet' id='happy-icons-css' href='style.min2.css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' href='font-awesome.min.css' media='all' />
     <link rel='stylesheet' id='google-fonts-1-css'
         href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CArima%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMs+Madi%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPlayfair+Display%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPort+Lligat+Sans%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CCombo%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CAlex+Brush%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CLeague+Spartan%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CAlata%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CQuicksand%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPoppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CAref+Ruqaa%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap&#038;ver=6.8.3'
         media='all' />
-    <link rel='stylesheet' id='elementor-icons-shared-0-css'
-        href='style.min3.css'
-        media='all' />
-    <link rel='stylesheet' id='elementor-icons-happy-icons-css'
-        href='style.min4.css'
-        media='all' />
+    <link rel='stylesheet' id='elementor-icons-shared-0-css' href='style.min3.css' media='all' />
+    <link rel='stylesheet' id='elementor-icons-happy-icons-css' href='style.min4.css' media='all' />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <script id="jquery-core-js-extra">
         var pp = { "ajax_url": "https:\/\/menujuacara.com\/wp-admin\/admin-ajax.php" };
     </script>
     <script src="jquery.min.js" id="jquery-core-js"></script>
-    <script src="jquery-migrate.min.js"
-        id="jquery-migrate-js"></script>
-    <script
-        src="v4-shims.min.js"
-        id="font-awesome-4-shim-js"></script>
-    <script
-        src="purify.min.js"
-        id="dom-purify-js"></script>
+    <script src="jquery-migrate.min.js" id="jquery-migrate-js"></script>
+    <script src="v4-shims.min.js" id="font-awesome-4-shim-js"></script>
+    <script src="purify.min.js" id="dom-purify-js"></script>
     <meta name="generator"
         content="Elementor 3.28.1; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
     <style>
@@ -2496,8 +2444,7 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="image.default">
                             <div class="elementor-widget-container">
-                                <img decoding="async" width="888" height="1182"
-                                    src="FPP.jpeg"
+                                <img decoding="async" width="888" height="1182" src="FPP.jpeg"
                                     class="attachment-full size-full wp-image-1893" alt=""
                                     srcset="FPP.jpeg 888w, FPP.jpeg 225w, FPP.jpeg 769w, FPP.jpeg 768w"
                                     sizes="(max-width: 888px) 100vw, 888px" />
@@ -2552,8 +2499,7 @@
                             data-settings="{&quot;_animation_mobile&quot;:&quot;none&quot;}"
                             data-widget_type="image.default">
                             <div class="elementor-widget-container">
-                                <img loading="lazy" decoding="async" width="888" height="1182"
-                                    src="FPWF.jpeg"
+                                <img loading="lazy" decoding="async" width="888" height="1182" src="FPWF.jpeg"
                                     class="attachment-full size-full wp-image-1892" alt=""
                                     srcset="FPWF.jpeg 888w, FPWF.jpeg 225w, FPWF.jpeg 769w, FPWF.jpeg 768w"
                                     sizes="(max-width: 888px) 100vw, 888px" />
@@ -4733,102 +4679,59 @@
             document.addEventListener(event, lazyloadRunObserver);
         });
     </script>
-    <script src="wdp-swiper.min.js"
-        id="wdp-swiper-js-js"></script>
-    <script src="qr-code.js"
-        id="weddingpress-qr-js"></script>
-    <script src="exad-scripts.min.js"
-        id="exad-main-script-js"></script>
+    <script src="wdp-swiper.min.js" id="wdp-swiper-js-js"></script>
+    <script src="qr-code.js" id="weddingpress-qr-js"></script>
+    <script src="exad-scripts.min.js" id="exad-main-script-js"></script>
     <script src="qr-code-styling.js" id="qr-code-styling-js"></script>
     <script src="xlsx.full.min.js" id="kirimkit-js"></script>
     <script id="cui_js_script-js-extra">
         var CUI_WP = { "ajaxurl": "https:\/\/menujuacara.com\/wp-admin\/admin-ajax.php", "cuiNonce": "7101f4f767", "jpages": "true", "jPagesNum": "10", "textCounter": "true", "textCounterNum": "500", "widthWrap": "", "autoLoad": "true", "thanksComment": "Thanks for your comment!", "thanksReplyComment": "Thanks for answering the comment!", "duplicateComment": "You might have left one of the fields blank, or duplicate comments", "accept": "Accept", "cancel": "Cancel", "reply": "Reply", "textWriteComment": "Ucapan", "classPopularComment": "cui-popular-comment", "textToDisplay": "Text to display", "textCharacteresMin": "2 characters minimum", "textNavNext": "Next", "textNavPrev": "Previous", "textMsgDeleteComment": "Do you want delete this comment?", "textLoadMore": "Load more" };
     </script>
-    <script
-        src="cui_script.js"
-        id="cui_js_script-js"></script>
-    <script
-        src="jquery.jPages.min.js"
-        id="cui_jPages-js"></script>
-    <script
-        src="jquery.textareaCounter.js"
-        id="cui_textCounter-js"></script>
-    <script
-        src="jquery.placeholder.min.js"
-        id="cui_placeholder-js"></script>
-    <script
-        src="autosize.min.js"
-        id="cui_autosize-js"></script>
-    <script src="hello-frontend.min.js"
-        id="hello-theme-frontend-js"></script>
-    <script src="swiper.min.js"
-        id="swiper-js"></script>
-    <script
-        src="jquery-numerator.min.js"
-        id="jquery-numerator-js"></script>
-    <script
-        src="jquery.sticky.min.js"
-        id="e-sticky-js"></script>
+    <script src="cui_script.js" id="cui_js_script-js"></script>
+    <script src="jquery.jPages.min.js" id="cui_jPages-js"></script>
+    <script src="jquery.textareaCounter.js" id="cui_textCounter-js"></script>
+    <script src="jquery.placeholder.min.js" id="cui_placeholder-js"></script>
+    <script src="autosize.min.js" id="cui_autosize-js"></script>
+    <script src="hello-frontend.min.js" id="hello-theme-frontend-js"></script>
+    <script src="swiper.min.js" id="swiper-js"></script>
+    <script src="jquery-numerator.min.js" id="jquery-numerator-js"></script>
+    <script src="jquery.sticky.min.js" id="e-sticky-js"></script>
     <script id="happy-elementor-addons-js-extra">
         var HappyLocalize = { "ajax_url": "https:\/\/menujuacara.com\/wp-admin\/admin-ajax.php", "nonce": "07b51227d1", "pdf_js_lib": "https:\/\/menujuacara.com\/wp-content\/plugins\/happy-elementor-addons\/assets\/vendor\/pdfjs\/lib" };
     </script>
-    <script
-        src="happy-addons.min.js"
-        id="happy-elementor-addons-js"></script>
-    <script
-        src="pp-bg-effects.min.js"
-        id="pp-bg-effects-js"></script>
-    <script
-        src="particles.min.js"
-        id="particles-js"></script>
-    <script
-        src="webpack-pro.runtime.min.js"
-        id="elementor-pro-webpack-runtime-js"></script>
-    <script src="webpack.runtime.min.js"
-        id="elementor-webpack-runtime-js"></script>
-    <script src="frontend-modules.min.js"
-        id="elementor-frontend-modules-js"></script>
-    <script src="hooks.min.js"
-        id="wp-hooks-js"></script>
-    <script src="i18n.min.js"
-        id="wp-i18n-js"></script>
+    <script src="happy-addons.min.js" id="happy-elementor-addons-js"></script>
+    <script src="pp-bg-effects.min.js" id="pp-bg-effects-js"></script>
+    <script src="particles.min.js" id="particles-js"></script>
+    <script src="webpack-pro.runtime.min.js" id="elementor-pro-webpack-runtime-js"></script>
+    <script src="webpack.runtime.min.js" id="elementor-webpack-runtime-js"></script>
+    <script src="frontend-modules.min.js" id="elementor-frontend-modules-js"></script>
+    <script src="hooks.min.js" id="wp-hooks-js"></script>
+    <script src="i18n.min.js" id="wp-i18n-js"></script>
     <script id="wp-i18n-js-after">
         wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
     </script>
     <script id="elementor-pro-frontend-js-before">
         var ElementorProFrontendConfig = { "ajaxurl": "https:\/\/menujuacara.com\/wp-admin\/admin-ajax.php", "nonce": "db5224a593", "urls": { "assets": "https:\/\/menujuacara.com\/wp-content\/plugins\/elementor-pro\/assets\/", "rest": "https:\/\/menujuacara.com\/wp-json\/" }, "settings": { "lazy_load_background_images": true }, "popup": { "hasPopUps": false }, "shareButtonsNetworks": { "facebook": { "title": "Facebook", "has_counter": true }, "twitter": { "title": "Twitter" }, "linkedin": { "title": "LinkedIn", "has_counter": true }, "pinterest": { "title": "Pinterest", "has_counter": true }, "reddit": { "title": "Reddit", "has_counter": true }, "vk": { "title": "VK", "has_counter": true }, "odnoklassniki": { "title": "OK", "has_counter": true }, "tumblr": { "title": "Tumblr" }, "digg": { "title": "Digg" }, "skype": { "title": "Skype" }, "stumbleupon": { "title": "StumbleUpon", "has_counter": true }, "mix": { "title": "Mix" }, "telegram": { "title": "Telegram" }, "pocket": { "title": "Pocket", "has_counter": true }, "xing": { "title": "XING", "has_counter": true }, "whatsapp": { "title": "WhatsApp" }, "email": { "title": "Email" }, "print": { "title": "Print" }, "x-twitter": { "title": "X" }, "threads": { "title": "Threads" } }, "facebook_sdk": { "lang": "en_US", "app_id": "" }, "lottie": { "defaultAnimationUrl": "default.json" } };
     </script>
-    <script src="frontend.min.js"
-        id="elementor-pro-frontend-js"></script>
-    <script src="core.min.js"
-        id="jquery-ui-core-js"></script>
+    <script src="frontend.min.js" id="elementor-pro-frontend-js"></script>
+    <script src="core.min.js" id="jquery-ui-core-js"></script>
     <script id="elementor-frontend-js-before">
         var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false, "isScriptDebug": false }, "i18n": { "shareOnFacebook": "Share on Facebook", "shareOnTwitter": "Share on Twitter", "pinIt": "Pin it", "download": "Download", "downloadImage": "Download image", "fullscreen": "Fullscreen", "zoom": "Zoom", "share": "Share", "playVideo": "Play Video", "previous": "Previous", "next": "Next", "close": "Close", "a11yCarouselPrevSlideMessage": "Previous slide", "a11yCarouselNextSlideMessage": "Next slide", "a11yCarouselFirstSlideMessage": "This is the first slide", "a11yCarouselLastSlideMessage": "This is the last slide", "a11yCarouselPaginationBulletMessage": "Go to slide" }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "responsive": { "breakpoints": { "mobile": { "label": "Mobile Portrait", "value": 767, "default_value": 767, "direction": "max", "is_enabled": true }, "mobile_extra": { "label": "Mobile Landscape", "value": 880, "default_value": 880, "direction": "max", "is_enabled": false }, "tablet": { "label": "Tablet Portrait", "value": 1024, "default_value": 1024, "direction": "max", "is_enabled": true }, "tablet_extra": { "label": "Tablet Landscape", "value": 1200, "default_value": 1200, "direction": "max", "is_enabled": false }, "laptop": { "label": "Laptop", "value": 1366, "default_value": 1366, "direction": "max", "is_enabled": false }, "widescreen": { "label": "Widescreen", "value": 2400, "default_value": 2400, "direction": "min", "is_enabled": false } }, "hasCustomBreakpoints": false }, "version": "3.28.1", "is_static": false, "experimentalFeatures": { "e_font_icon_svg": true, "additional_custom_breakpoints": true, "container": true, "theme_builder_v2": true, "hello-theme-header-footer": true, "nested-elements": true, "home_screen": true, "launchpad-checklist": true }, "urls": { "assets": "https:\/\/menujuacara.com\/wp-content\/plugins\/elementor\/assets\/", "ajaxurl": "https:\/\/menujuacara.com\/wp-admin\/admin-ajax.php", "uploadUrl": "https:\/\/menujuacara.com\/wp-content\/uploads" }, "nonces": { "floatingButtonsClickTracking": "c300402e2f" }, "swiperClass": "swiper", "settings": { "page": [], "editorPreferences": [] }, "kit": { "active_breakpoints": ["viewport_mobile", "viewport_tablet"], "global_image_lightbox": "yes", "lightbox_enable_counter": "yes", "lightbox_enable_fullscreen": "yes", "lightbox_enable_zoom": "yes", "lightbox_enable_share": "yes", "lightbox_title_src": "title", "lightbox_description_src": "description", "hello_header_logo_type": "title", "hello_footer_logo_type": "logo" }, "post": { "id": 191811, "title": "The%20Wedding%20of%20Hilmy%20%26%20Indah", "excerpt": "", "featuredImage": "https:\/\/menujuacara.com\/wp-content\/uploads\/2025\/04\/tumb-kartun3d-eks9a.jpg" } };
     </script>
-    <script src="frontend.min2.js"
-        id="elementor-frontend-js"></script>
-    <script src="elements-handlers.min.js"
-        id="pro-elements-handlers-js"></script>
-    <script src="bdt-uikit.js"
-        id="bdt-uikit-js"></script>
+    <script src="frontend.min2.js" id="elementor-frontend-js"></script>
+    <script src="elements-handlers.min.js" id="pro-elements-handlers-js"></script>
+    <script src="bdt-uikit.js" id="bdt-uikit-js"></script>
     <script id="weddingpress-wdp-js-extra">
         var cevar = { "ajax_url": "https:\/\/menujuacara.com\/wp-admin\/admin-ajax.php", "plugin_url": "https:\/\/menujuacara.com\/wp-content\/plugins\/weddingpress\/" };
     </script>
-    <script src="wdp.min.js"
-        id="weddingpress-wdp-js"></script>
+    <script src="wdp.min.js" id="weddingpress-wdp-js"></script>
     <script id="kirim-kit-js-extra">
         var sendkit_ajax = { "ajax_url": "https:\/\/menujuacara.com\/wp-admin\/admin-ajax.php" };
     </script>
-    <script src="guest-form.js"
-        id="kirim-kit-js"></script>
-    <script
-        src="tooltipster.min.js"
-        id="pp-tooltipster-js"></script>
-    <script
-        src="frontend-tooltip.min.js"
-        id="pp-elements-tooltip-js"></script>
-    <script defer
-        src="beacon.min.js"
+    <script src="guest-form.js" id="kirim-kit-js"></script>
+    <script src="tooltipster.min.js" id="pp-tooltipster-js"></script>
+    <script src="frontend-tooltip.min.js" id="pp-elements-tooltip-js"></script>
+    <script defer src="beacon.min.js"
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
         data-cf-beacon='{"version":"2024.11.0","token":"bbcd4717a7f84d889e74cb71e0b8d1d4","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
         crossorigin="anonymous"></script>
@@ -5013,7 +4916,7 @@
 
                 // Logika Mahkota
                 const senderNameHtml = isOfficialReply
-                    ? `<span class="official-name"> ${d.nama}&nbsp;&nbsp;&nbsp;<i class="fas fa-crown"></i></span>`
+                    ? `<span class="official-name"> ${d.nama}&nbsp;&nbsp;&nbsp;<i class="icon-crown"></i></span>`
                     : `<span class="ucapan-nama">${d.nama}</span>`;
 
                 const konfirmasiClass = d.konfirmasi ? d.konfirmasi.toLowerCase().replace(' ', '_') : 'tidak_terkonfirmasi';
